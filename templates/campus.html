@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table>
+            <div>
+                <thead>
+                    <div>
+                        <tr>
+                            <div>
+                                <th>#</th>
+                                <th>KEY</th>
+                                <th>Institution Name</th>
+                                <th>Category</th>
+                            </div>
+                        </tr>
+                    </div>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.code }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.type }}</td>
+                    </tr> 
+                    {% endfor %}   
+                </tbody>
+            </div>
+        </table>
+    </div>
+</body>
+</html>

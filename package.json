@@ -5,155 +5,175 @@
       "code": "AIU",
       "name": "AFRICA INTERNATIONAL UNIVERSITY",
       "type": "University",
-      "link": "file4.html"
+      "link": "file1.html"
     },
     {
       "id": 2,
-      "code": "AIU",
+      "code": "UON",
       "name": "University of Nairobi",
       "type": "University",
-      "link": "file5.html"
+      "link": "file2.html"
     },
     {
       "id": 3,
       "code": "ASM TTI",
       "name": "AHMED SHAHAME MWIDANI TECHNICAL TRAINING INSTITUTE",
       "type": "College",
-      "link": "file6.html"
+      "link": "file3.html"
     },
     {
       "id": 4,
       "code": "ALDAITTI",
       "name": "ALDAI TECHNICAL TRAINING INSTITUTE",
       "type": "College",
-      "link": "file7.html"
+      "link": "file4.html"
     },
     {
       "id": 5,
       "code": "AU",
       "name": "ALUPE UNIVERSITY",
       "type": "University",
-      "link": "file8.html"
+      "link": "file5.html"
     },
     {
       "id": 6,
       "code": "ALUPE UNIVERSITY TVET INSTITUTE",
       "name": "ALUPE UNIVERSITY TVET INSTITUTE",
-      "type": ""
+      "type": "University",
+      "link": "file6.html"
     },
     {
       "id": 7,
       "code": "AMIU",
       "name": "AMREF INTERNATIONAL UNIVERSITY",
-      "type": "University"
+      "type": "University",
+      "link": "file7.html"
     },
     {
       "id": 8,
       "code": "BAHATI IBAS",
       "name": "BAHATI INSTITUTE OF BUSINESS AND ADMINISTRATION STUDIES",
-      "type": "College"
+      "type": "College",
+      "link": "file8.html"
     },
     {
       "id": 9,
       "code": "BMA",
       "name": "BANDARI MARITIME ACADEMY",
-      "type": "College"
+      "type": "College",
+      "link": "file9.html"
     },
     {
       "id": 10,
       "code": "BARINGO TC",
       "name": "BARINGO TECHNICAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file10.html"
     },
     {
       "id": 11,
       "code": "BELGUT TVC",
       "name": "BELGUT TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file11.html"
     },
     {
       "id": 12,
       "code": "BOMET TVC",
       "name": "BOMET TECHNICAL & VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file12.html"
     },
     {
       "id": 13,
       "code": "BUC",
       "name": "BOMET UNIVERSITY COLLEGE",
-      "type": "University"
+      "type": "University",
+      "link": "file13.html"
     },
     {
       "id": 14,
       "code": "BONDO TTI",
       "name": "BONDO TECHNICAL TRAINING INSTITUTE",
-      "type": "College"
+      "type": "College",
+      "link": "file14.html"
     },
     {
       "id": 15,
       "code": "BORABU TVC",
       "name": "BORABU TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file15.html"
     },
     {
       "id": 16,
       "code": "BAC",
       "name": "BUKURA AGRICULTURAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file16.html"
     },
     {
       "id": 17,
       "code": "BUMBE TTI",
       "name": "BUMBE TECHNICAL TRAINING INSTITUTE",
-      "type": "College"
+      "type": "College",
+      "link": "file17.html"
     },
     {
       "id": 18,
       "code": "BUNGOMA NORTH TVC",
       "name": "BUNGOMA NORTH TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file18.html"
     },
     {
       "id": 19,
       "code": "BUNYALA TVC",
       "name": "BUNYALA TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file19.html"
     },
     {
       "id": 20,
       "code": "BURETI TTI",
       "name": "BURETI TECHNICAL TRAINING INSTITUTE",
-      "type": "College"
+      "type": "College",
+      "link": "file20.html"
     },
     {
       "id": 21,
       "code": "BUSHIANGALA TTI",
       "name": "BUSHIANGALA TECHNICAL TRAINING INSTITUTE",
-      "type": "College"
+      "type": "College",
+      "link": "file21.html"
     },
     {
       "id": 22,
       "code": "BUTERE TVC",
       "name": "BUTERE TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file22.html"
     },
     {
       "id": 23,
       "code": "CUEA",
       "name": "CATHOLIC UNIVERSITY OF EASTERN AFRICA",
-      "type": "University"
+      "type": "University",
+      "link": "file23.html"
     },
     {
       "id": 24,
       "code": "CTTR",
       "name": "CENTRE FOR TOURISM TRAINING AND RESEARCH",
-      "type": "College"
+      "type": "College",
+      "link": "file24.html"
     },
     {
       "id": 25,
       "code": "CHAMASIRI TVC",
       "name": "CHAMASIRI TECHNICAL AND VOCATIONAL COLLEGE",
-      "type": "College"
+      "type": "College",
+      "link": "file25.html"
     },
     {
       "id": 26,

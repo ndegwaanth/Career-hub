@@ -1,0 +1,25 @@
+{
+    "institutions": [
+      {
+        "id": 1,
+        "code": "AIU",
+        "name": "AFRICA INTERNATIONAL UNIVERSITY",
+        "type": "University",
+        "link": "file4.html"
+      },
+      {
+        "id": 2,
+        "code": "AIU",
+        "name": "University of Nairobi",
+        "type": "University",
+        "link": "file5.html"
+      },
+      {
+        "id": 3,
+        "code": "ASM TTI",
+        "name": "AHMED SHAHAME MWIDANI TECHNICAL TRAINING INSTITUTE",
+        "type": "College",
+        "link": "file6.html"
+      }
+    ]
+  }  

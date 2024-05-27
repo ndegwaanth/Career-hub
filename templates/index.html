@@ -4,54 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/styles/index.css">
     <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
-    <style>
-        #btn1 {
-            width: 50px;
-            height: 10px;
-            background-color: blue;
-        }
-        .newheader {
-            width: auto;
-            height: 135px;
-            background-color: crimson;
-            top: 0%;
-        }
-        .table-form {
-            margin-top: 10%;
-        }
-        .text-field {
-            width: 20%;
-            height: 30px;
-            margin-top: 2%;
-            margin-bottom: auto;
-        }
-        .app-text {
-            padding-bottom: 0.009%;
-        }
-    </style>
-
-     <script>
-        function filterTable() {
-            // Get the input value and convert it to lower case for case-insensitive comparison
-            const query = document.getElementById('search-input').value.toLowerCase();
-
-            // Get all rows of the table body
-            const rows = document.querySelectorAll('#institutions-table tbody tr');
-
-            // Loop through the rows and hide those that don't match the query
-            rows.forEach(row => {
-                const code = row.cells[1].textContent.toLowerCase();
-                const name = row.cells[2].textContent.toLowerCase();
-                if (code.includes(query) || name.includes(query)) {
-                    row.style.display = ''; // Show row
-                } else {
-                    row.style.display = 'none'; // Hide row
-                }
-            });
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
+    <script src="/static/js/index.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
 <body>
     <div class="newheader">
         <header></header>
@@ -82,9 +39,6 @@
             </tbody>
         </table>
     </div><br>
-    <footer class="indx-d">
-        <button type="button" class="btn btn-primary col-md-6 " id="btn1">subscribe</button>
-    </footer>
 </div>
 </body>
 </html>

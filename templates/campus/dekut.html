@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Bachelor of Education in Technology (Civil Engineering)",
+            "Bachelor of Education in Technology (Electrical and Electronic Engineering)",
+            "Bachelor of Education in Technology (Mechanical Engineering)",
+            "Bachelor of Science in Civil Engineering",
+            "Bachelor of Science in Mechatronic Engineering",
+            "Bachelor of Science in Mechanical Engineering",
+            "Bachelor of Science in Chemical Engineering",
+            "Bachelor of Science in Electrical and Electronic Engineering",
+            "Bachelor of Science in Criminology and Security Management",
+            "Bachelor of Science in Nursing (Direct entry)",
+            "Bachelor of Science in Nursing (Upgrading)",
+            "Bachelor of Science in Actuarial Science",
+            "Bachelor of Science in Industrial Chemistry",
+            "Bachelor of Science in Leather Technology",
+            "Bachelor of Science in Computer Science",
+            "Bachelor of Science in Business Information Technology (BBIT)",
+            "Bachelor of Science in Information Technology (IT)",
+            "Bachelor of Science in Geomatics and Geospatial Information Systems",
+            "Bachelor of Science in Geospatial Information Systems and Remote Sensing",
+            "Bachelor of Science in Geological Sciences and Technology",
+            "Bachelor of Science in Food Science and Technology",
+            "Bachelor of Science in Nutrition and Dietetics",
+            "Bachelor in Sustainable Tourism and Hospitality Management",
+            "Bachelor of Purchasing and Supplies Management (BPSM)",
+            "Bachelor of Commerce (BCom)",
+            "Bachelor of Business Administration (BBA)",
+            "Bachelor of Technology in Building Construction",
+            "Diploma in Information Technology",
+            "Diploma in Leather Technology",
+            "Diploma in Security Management",
+            "Diploma in Business Administration (DBA)",
+            "Diploma of Purchasing and Supplies Management (DPSM)",
+            "Diploma in Sustainable Tourism and Hospitality Management",
+            "Diploma in Food Science and Technology",
+            "Diploma in Coffee Technology and Cupping",
+            "Diploma in Furniture Technology and Interior Design",
+            "Diploma in Metal Work, Welding and Design",
+            "Diploma in Building Technology",
+            "Diploma in Fashion Design & Interior Decoration",
+            "Diploma in Electrical &Electronics Engineering (Power Option)"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

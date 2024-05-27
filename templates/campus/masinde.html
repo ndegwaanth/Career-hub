@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses</title>
+    <style>
+        .aiu-header {
+            background-color: crimson;
+            width: 100%;
+            height: 80px;
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: crimson;
+            color: white;
+        }
+        .pagination button.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <header class="aiu-header"></header>
+    </div>
+    <div>
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>Courses Offered</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const courses = [
+            "Bachelor of Education (Science)",
+            "Bachelor of Education (Arts)",
+            "Bachelor of Education (French)",
+            "Bachelor of Criminology",
+            "Bachelor of Social Work",
+            "Bachelor of Journalism & Mass Communication",
+            "BSc. In Disaster Preparedness & Engineering Technology (DPET)",
+            "BSc. In Disaster mitigation & sustainable development",
+            "B. in Disaster Management and International Diplomacy (DMID)",
+            "B. in Peace & Conflict Studies (PCS)",
+            "B. Emergency Management and humanitarian Assistance (EMHA)",
+            "Bachelor of Science in Mechanical and Industrial Engineering",
+            "BSc Civil & Structural Engineering",
+            "BSc Electrical and Communication Engineering",
+            "Bachelor of Science (Computer Science)",
+            "Bachelor of Science (Information Technology)",
+            "Bachelor of Science (Physics)",
+            "Bachelor of Science (Chemistry)",
+            "Bachelor of Science (Mathematics)",
+            "Bachelor of Science (Biotechnology)",
+            "Bachelor of Science (Biology)",
+            "Bachelor of Science in Bioresources Management and Conservations",
+            "Bachelor of Science in Environmental Management & Conservation",
+            "Bachelors of Optometry and Vision Sciences (B. Optom)",
+            "Bachelors of Science in Health Profession (Medical) Education",
+            "Bachelors of Science in Health Promotion and Sports Sciences",
+            "Bachelors of Science in Human Nutrition and Dietetics",
+            "Bachelors of Science in Medical Laboratory Sciences",
+            "Bachelors of Science in Medical Biotechnology",
+            "Bachelors of Science in Medical Epidemiology and Biostatistics",
+            "Bachelors of Science in Community Health and Development",
+            "Bachelors of Science in Physiotherapy",
+            "Bachelors of Science in Hospitality and Institutional Management",
+            "Bachelor of Science in Nursing (Direct Entry)",
+            "Bachelor of Science in Nursing (Upgrading)",
+            "Bachelor of Science in Nursing (Upgrading – Distance Learning)",
+            "Bachelor of Science in Food Processing Technology",
+            "Bachelor of Science in Agricultural Education & Extension",
+            "Bachelor of Science in Renewable Energy and Biofuels Technology",
+            "Bachelor of Science in Agricultural Economics and Resource Management",
+            "Bachelor of Science in Sugar Technology",
+            "Bachelor of Science in Agriculture and Biotechnology",
+            "BSc. Animal Production and Processing",
+            "BSc Animal Health and Management",
+            "BSc Fisheries and Aquaculture",
+            "BSc Agribusiness Management and Marketing",
+            "Bachelor of Science in Economics",
+            "Bachelor of Commerce",
+            "Bachelor of Criminology",
+            "Bachelor of Journalism & Mass Communication",
+            "BSc. In Disaster Preparedness & Engineering Technology (DPET)",
+            "BSc. In Disaster mitigation & sustainable development",
+            "B.Sc in Mechanical and Industrial Engineering",
+            "B.Sc Civil & Structural Engineering",
+            "B.Sc Electrical and Communication Engineering",
+            "Bachelor of Science (Computer Science)",
+            "Bachelor of Science (Information Technology)",
+            "Bachelor of Science (Mathematics)",
+            "Bachelors of Science in Human Nutrition and Dietetics",
+            "Bachelors of Science in Medical Laboratory Sciences",
+            "Bachelors of Science in Medical Epidemiology and Biostatistics",
+            "Bachelors of Science in Physiotherapy",
+            "Bachelor of Science in Nursing (Direct Entry)",
+            "Bachelor of Science in Nursing (Upgrading)",
+            "Bachelor of Science in Nursing (Upgrading – Distance Learning)"
+        ];
+
+        const rowsPerPage = 20;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

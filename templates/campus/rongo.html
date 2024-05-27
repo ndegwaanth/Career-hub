@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Bachelor of Commerce (Commerce)",
+            "Bachelor of Science in Computer Science (Computer Science)",
+            "Bachelor of Science in Agriculture (Agriculture)",
+            "Bachelor of Education in Arts (Arts)",
+            "Bachelor of Education in Special Needs Education (Special Needs Education)",
+            "Bachelor of Science in Horticulture (Horticulture)",
+            "Bachelor of Science in Human Resource Management (HRM)",
+            "Bachelor of Arts in Economics (Economics)",
+            "Bachelor of Science in Biochemistry (Biochemistry)",
+            "Bachelor of Science in Chemistry (Chemistry)",
+            "Bachelor of Arts in International Relations and Diplomatic Studies",
+            "Bachelor of Science in Mathematics (Mathematics)",
+            "Bachelor of Science in Physics (Physics)",
+            "Bachelor of Science in Entrepreneurship (Entrepreneurship)",
+            "Bachelor of Arts in Kiswahili (Kiswahili)",
+            "Bachelor of Science in Agribusiness Management (Agribusiness Management)",
+            "Bachelor of Science in Agricultural Economics and Resource Management (Agricultural Economics)",
+            "Bachelor of Science Project Planning and Management (Project Planning and Management)",
+            "Bachelor of Science in Microbiology (Microbiology)",
+            "Bachelor of Science in Communication and Media Studies (Communication and Media Studies)",
+            "Bachelor of Arts in History (History)",
+            "Bachelor of Arts in Linguistics (Linguistics)",
+            "Bachelor of Arts in International Relations (International Relations)",
+            "Bachelor of Science in Environmental Science (Environmental Science)",
+            "Bachelor of Science in Information Science (Information Science)",
+            "Bachelor of Science in Informatics (Informatics)",
+            "Bachelor of Hospitality and Hotel Management (Hospitality and Hotel Management)",
+            "Bachelor of Tourism Management (Tourism Management)",
+            "Bachelor of Science in Health System Management (Health System Management)",
+            "Bachelor of Arts in Religion (Religion)",
+            "Bachelor of Arts in Geography (Geography)",
+            "Bachelor of Supply Chain management (Supply Chain Management)",
+            "Bachelor of Education in Science (Science)",
+            "Bachelor of Science in Agricultural Extension Education (Agricultural Extension Education)",
+            "Bachelor of Science in Applied Statistics With Computing (Applied Statistics With Computing)",
+            "Bachelor of Science in Health Records and Information Management (Health Records and Information Management)",
+            "Bachelor of Arts in Political Science and Public Administration (Political Science and Public Administration)",
+            "Bachelor of Science in Fashion Design and Textile Technology (Fashion Design and Textile Technology)",
+            "Bachelor of Arts in Sociology, Community Development and Criminology (Sociology, Community Development and Criminology)",
+            "Bachelor of Arts in Literature (Literature)"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

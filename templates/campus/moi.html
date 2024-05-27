@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: crimson;
+            width: 100%;
+            height: 80px;
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: crimson;
+            color: white;
+        }
+        .pagination button.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <div>
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>Courses Offered</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const courses = [
+            "Diploma in Community Development",
+            "Diploma in Public Administration",
+            "Diploma in Religious Studies",
+            "Diploma in Literary Journalism",
+            "Diploma in Theatre & Film",
+            "Diploma in Music",
+            "Diploma in Business Management",
+            "Diploma in Economics",
+            "Diploma in Agribusiness Management",
+            "Diploma in Sports Management",
+            "Diploma in Human Resource Management",
+            "Diploma in Entrepreneurship Studies",
+            "Diploma in Project Planning and Management",
+            "Diploma in Early Childhood Development (ECD)",
+            "Diploma in Secondary Education",
+            "Diploma in Tourism Management (DTM)",
+            "Diploma in Travel & Tour Guiding (DTTG)",
+            "Diploma in Hotel and Restaurant Management (DHRM)",
+            "Diploma in Events Management (DEM)",
+            "Diploma in Sustainable Tourism & Wildlife Management",
+            "Diploma in Air Travel Services Management",
+            "Diploma in Agriculture",
+            "Diploma in Social Work",
+            "Diploma in Criminology",
+            "Bachelor of Science Aerospace Science (Professional Pilot)",
+            "Bachelor of Science Aerospace Science (Aviation Security)",
+            "Bachelor of Science Aerospace Science (Aerospace Logistics)",
+            "Bachelor of Science in Agricultural Biotechnology",
+            "Bachelor of Science in Agricultural Extension Education",
+            "Bachelor of Science Environmental Studies",
+            "Bachelor of Science in Animal Science",
+            "Bachelor in Agricultural Economics and Resource Management",
+            "Bachelor of Arts in Linguistics, Media & Communication",
+            "Bachelor of Arts in Geography",
+            "Bachelor of Arts in Psychology",
+            "Bachelor of Arts in Penology & Security Studies",
+            "Bachelor of Arts in Kiswahili",
+            "Bachelor of Arts in French",
+            "Bachelor of Arts in Social Work",
+            "Bachelor of Arts in Community Development",
+            "Bachelor of Arts in Counselling Psychology",
+            "Bachelor of Arts in German",
+            "Bachelor of Arts in Music",
+            "Bachelor of Arts in Criminology",
+            "Bachelor of Arts in Anthropology",
+            "Bachelor of Arts in History",
+            "Bachelor of Arts in Political Science and Public Administration",
+            "Bachelor of Arts in Literature",
+            "Bachelor of Arts in Sociology",
+            "Bachelor of Arts in Film and Television",
+            "Bachelor of Arts in Theology",
+            "Bachelor of Arts in Theatre",
+            "Bachelor of Arts in Philosophy",
+            "Bachelor of Arts in English",
+            "Bachelor of Arts in Linguistics",
+            "Bachelor of Arts in Religious Studies",
+            "Bachelor of Arts with Education",
+            "Bachelor of Science (B.Sc.) degree in any of the following areas: Mathematics, Botany, Physics, Zoology, and Chemistry",
+            "Bachelor of Science (Microbiology)",
+            "Bachelor of Science (Computer Science)",
+            "Bachelor of Science (Biochemistry)",
+            "Bachelor of Science (Applied Statistics with Computing)",
+            "Bachelor of Science (Actuarial Science)",
+            "Bachelor of Science with Education in any of the following:",
+            "Bachelor of Business Management (BBM) with any of the following specialization options:",
+            "Bachelor of Maritime Management (BMM)",
+            "Bachelor of Civil Aviation Management",
+            "Bachelor of Arts in Economics",
+            "Bachelor of Sports Management",
+            "Bachelor of Science in Agribusiness Management",
+            "Bachelor of Science in Human Resource Management",
+            "Bachelor of Science in Entrepreneurship",
+            "Bachelor of Science in Strategic Management",
+            "Bachelor of Science in Project Planning and Management",
+            "Bachelor of Dental Surgery",
+            "Bachelor of Education (Arts)",
+            "Bachelor of Education (Guidance and Counseling)",
+            "Bachelor of Education (Early Childhood)",
+            "Bachelor of Education (Special Needs Education) with the following options:",
+            "Bachelor of Education in Educational Leadership and Policy (Primary Option)",
+            "Bachelor of Education (Science)",
+            "Bachelor of Education (Technology Education)",
+            "Bachelor of Education (Business Studies)",
+            "Bachelor of Engineering in Civil & Structural Engineering",
+            "Bachelor of Engineering in Chemical & Process Engineering",
+            "Bachelor of Engineering in Electrical & Electronics Engineering",
+            "Bachelor of Engineering in Electrical & Telecommunications Engineering",
+            "Bachelor of Engineering in Industrial & Textile Engineering",
+            "Bachelor of Engineering in Mechanical & Production Engineering",
+            "Bachelor of Science in Information Sciences",
+            "Bachelor of Science in Informatics",
+            "Bachelor of Science in Media Science",
+            "Bachelor of Science in Communication and Public Relations",
+            "Bachelor of Science in Graphic Communication and Advertising",
+            "Bachelor of Science in Communication and Journalism",
+            "Bachelor of Laws (LLB)",
+            "Bachelor of Medicine and Bachelor of Surgery (MBCHB)",
+            "Bachelor of Science in Medical Psychology",
+            "Bachelor of Science in Physical Therapy",
+            "Bachelor of Science Medical Laboratory Science (BSc MLS)",
+            "Bachelor of Science in Nursing",
+            "Bachelor of Science in Community Health Education",
+            "Bachelor of Science in Environmental Health",
+            "Bachelor of Hotel and Hospitality Management (BHHM)",
+            "Bachelor of Tourism Management (BTM)",
+            "Bachelor of Travel and Tour Operations Management (BTTM)",
+            "Postgraduate Diploma in Religious Studies",
+            "Postgraduate Diploma in Forced Migration",
+            "Postgraduate Diploma in International Relations",
+            "Postgraduate Diploma in Clinical Pastoral Education",
+            "Postgraduate Diploma in Financial Management",
+            "Postgraduate Diploma in Education"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

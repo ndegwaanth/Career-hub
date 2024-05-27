@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+    const courses = [
+        "Diploma In Leather Technology",
+        "Diploma In Estate Agency And Property Management",
+        "Post Graduate Diploma In Housing Administration",
+        "Diploma In Business Management (fes)",
+        "Diploma In Sales & Marketing(fes)",
+        "Diploma In Adult Education And Community Development",
+        "Diploma In Youth Development Work",
+        "Diploma In Early Childhood Education",
+        "Diploma In Purchasing & Supplies Management",
+        "Diploma In Business Management",
+        "Diploma In Sales & Marketing",
+        "Diploma In Human Resource Management",
+        "Diploma In Public Relations",
+        "Diploma In Guidance And Counseling",
+        "Higher Diploma In Medical Diagnostic Ultrasound",
+        "Diploma In Audiology And Public Health Otology",
+        "Diploma Programmes in Humanities and Social Sciences",
+        "Ordinary Diploma",
+        "Diploma In Women, Leadership And Governance In Africa",
+        "Diploma In Chinese Language And Culture",
+        "Diploma In International Studies/strategic Studies",
+        "Diploma In International Studies",
+        "Diploma In Theatre And Film Studies",
+        "Diploma In Criminology And Social Order",
+        "Diploma In Social Work And Social Development",
+        "Diploma Programmes in Kisumu Campus",
+        "Diploma In Purchasing And Supplies Management",
+        "Diploma In Human Resource Management",
+        "Diploma In Guidance And Counseling",
+        "Ordinary Diploma",
+        "Diploma In Sales And Marketing",
+        "Diploma In Guidance And Counseling",
+        "Diploma In Project Planning And Management",
+        "Diploma In Human Resource Management",
+        "Diploma In Public Relations",
+        "Diploma In Purchasing And Supplies Management",
+        "Diploma In Business Management",
+        "Diploma In Project Planning And Management",
+        "Diploma In Adult Education And Community Development",
+        "Diploma In Youth Development Work",
+        "Diploma In Business Management",
+        "Diploma In Sales And Marketing",
+        "Diploma In Human Resource Management",
+        "Diploma In Purchasing And Supplies Management",
+        "Diploma In Public Relations",
+        "Diploma In Guidance And Counseling",
+        "Ordinary Diploma",
+        "B.sc. ( Food Science & Technology)",
+        "B.sc. ( Agriculture,education And Extension)",
+        "B.sc. (agribusiness Management)",
+        "B.sc. (food Science, Nutrition & Dietetics)",
+        "Climate Change & Development",
+        "Bachelor Of Science In Agribusiness Management",
+        "Bsc.agricultural Economics",
+        "Bsc.agricultural Education And Extension",
+        "Bachelor Of Science In Agriculture(animal Science Major)",
+        "Bachelor Of Science Fisheries And Aquaculture Management",
+        "Bachelor Of Science In Wildlife Management And Conservation",
+        "Bsc Food Science And Technology",
+        "Bsc Food Nutrition And Dietetics",
+        "B.sc. (agriculture)",
+        "B.sc. ( Range Management)",
+        "Bsc. Management Of Agroecosystems & Environment",
+        "Bachelor Of Science In Horticulture",
+        "Bachelor Of Veterinary Medicine",
+        "Bsc. In Wildlife Management And Conservation",
+        "B.sc. (bio-medical Technology)",
+        "Bachelor Of Science In Wildlife Management",
+        "Bachelor Programmes in Biological and Physical Sciences",
+        "Bachelor Of Science In Environmental Chemistry",
+        "Bachelor Of Science In Analytical Chemistry",
+        "B.sc Industrial Chemistry",
+        "B.sc Chemistry",
+        "Bachelor Of Science In Petroleum Geoscience",
+        "Bachelor Of Science In Actuarial Science",
+        "Bachelor Of Science In Mathematics",
+        "Bachelor Of Science In Statistics",
+        "Bachelor Of Science Mathematics And Computing",
+        "B.sc. (meteorology)",
+        "Bachelor Of Science In Atmospheric Science",
+        "B.sc (microprocessor Technology & Instrumentation)",
+        "B.sc. In Astronomy And Astrophysics",
+        "Bachelor Of Science In Physics",
+        "Bed Science (physics)",
+        "B.sc.(biology)",
+        "Bsc. Microbiology And Biotechnology",
+        "Bachelor Of Science In Environmental Conservation And Natural Resource Management",
+        "Bsc. Computer Science",
+        "B.sc. Industrial Chemistry",
+        "Bachelor Of Science",
+        "Bachelor Of Science (distance Learning)",
+        "Bsc Geology (distance Learning)",
+        "Bachelor Of Education (science)",
+        "B.sc. Analytical Chemistry",
+        "Bachelor Of Science In Chemistry",
+        "Bas/barch",
+        "B.a. Design",
+        "B.sc. (civil Engineering)",
+        "B.sc. (environmental And Biosystems Engineering)",
+        "B.sc. ( Electrical And Electronic Engineering)",
+        "B.sc.(surveying)",
+        "B.sc. ( Electrical Engineering)",
+        "B.sc. (geospatial Engineering)",
+        "B.sc. (mechanical Engineering)",
+        "Bachelor Of Real Estate",
+        "Bachelor Of Construction Management",
+        "Bachelor Of Quantity Surveying",
+        "B.a (urban & Regional Planning)",
+        "Bachelor Of Commerce By Distance",
+        "Bachelor Of Arts(distance)",
+        "Bachelor Of Education (arts, B.ed Distance)",
+        "Bachelor Of Education Arts In History And Geography",
+        "Bachelor Of Education Arts In History And Cre",
+        "Bachelor Of Education Arts In Geography And Mathematics",
+        "Bachelor Of Education Arts In Double Mathematics",
+        "Bachelor Of Education Arts In Mathematics And Business Studies",
+        "Bachelor Of Education Arts In Geography And Environmental Studies And Business Studies",
+        "Bachelor Of Education Arts In English And Literature",
+        "Bachelor Of Education Science In Physics And Geography And Environmental Studies",
+        "Bachelor Of Education Science In Double Mathematics",
+        "Bachelor Of Science In Physics",
+        "Bachelor Of Science In Analytical Chemistry",
+        "Bachelor Of Science In Industrial Chemistry",
+        "Bachelor Of Science In Geology",
+        "Bachelor Of Science In Meteorology",
+        "Bachelor Of Science In Pure Mathematics",
+        "Bachelor Of Science In Applied Mathematics",
+        "Bachelor Of Science In Zoology",
+        "Bachelor Of Science In Botany",
+        "Bachelor Of Science In Geography And Environmental Studies",
+        "Bachelor Of Arts In History",
+        "Bachelor Of Arts In Tourism",
+        "Bachelor Of Arts In English Language",
+        "Bachelor Of Arts In Literature",
+        "Bachelor Of Arts In Kiswahili",
+        "Bachelor Of Arts In Communication",
+        "Bachelor Of Arts In Arabic Studies",
+        "Bachelor Of Arts Sociology And Social Work",
+        "Bachelor Of Arts Christian Religious Studies",
+        "Bachelor Of Arts In Philosophy",
+        "Bachelor Of Arts In Psychology",
+        "Bachelor Of Arts In Guidance And Counseling",
+        "Bachelor Of Arts In Geography And Environmental Studies",
+        "Bachelor Of Commerce In Accounting",
+        "Bachelor Of Commerce In Finance",
+        "Bachelor Of Commerce In Marketing",
+        "Bachelor Of Commerce In Human Resource Management",
+        "Bachelor Of Commerce In Insurance And Management",
+        "Bachelor Of Commerce In Procurement And Purchasing And Supplies",
+        "Bachelor Of Commerce In Operations Management",
+        "Bachelor Of Commerce In Business Information Systems",
+        "Bachelor Of Arts In Political Science And Public Administration",
+        "B.ed Science By Distance Learning",
+        "Bachelor Of Education (arts, B. Ed)",
+        "B.ed.(arts) in Mathematics And Economics)",
+        "B.ed (arts) Linguistics And Literature",
+        "B.ed (arts) Mathematics And Geography",
+        "B.ed (arts) Kiswahili And Religious Studies",
+        "B.ed (arts) History And Religious Studies",
+        "B.ed (arts) History And Economics",
+        "B.ed (arts) Geography And History",
+        "B.ed (arts) Business And Mathematics",
+        "B.ed (arts) Business And Economics",
+        "B.ed (arts) Kiswahili And Literature",
+        "B.ed (arts) History And Kiswahili",
+        "B.ed (arts) Geography And Religious Studies",
+        "B.ed (arts) Geography And Economics",
+        "B.ed (arts) Business And Geography",
+        "Bachelor Of Science Agricultural Education And Extention (b.sc. Ae&e)",
+        "Bachelor Of Sciences (b.sc)",
+        "Bachelor Of Education (science) (b.ed.sc)",
+        "Bachelor Of Education In Early Childhood Education",
+        "Bachelor Of Education (arts)"
+    ];
+
+     // Define the number of courses per page
+        const coursesPerPage = 20;
+        
+        // Function to display courses for a given page
+        function displayCourses(page) {
+            const start = (page - 1) * coursesPerPage;
+            const end = start + coursesPerPage;
+            const coursesToShow = courses.slice(start, end);
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+            coursesToShow.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Function to display pagination buttons
+        function displayPaginationButtons() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+            const numPages = Math.ceil(courses.length / coursesPerPage);
+            for (let i = 1; i <= numPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.addEventListener("click", function() {
+                    displayCourses(i);
+                    const current = document.querySelector(".pagination button.active");
+                    if (current) {
+                        current.classList.remove("active");
+                    }
+                    this.classList.add("active");
+                });
+                pagination.appendChild(button);
+            }
+            // Display the first page initially
+            displayCourses(1);
+            // Mark the first page button as active
+            pagination.firstChild.classList.add("active");
+        }
+        
+        // Display pagination buttons when the page loads
+        displayPaginationButtons();
+    </script>
+</body>
+</html>

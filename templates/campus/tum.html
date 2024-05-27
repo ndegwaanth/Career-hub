@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Bachelor of Science in Electrical and Electronic Engineering",
+            "Bachelor of Science in Information Technology",
+            "Bachelor Of Technology in Information and Communication Technology",
+            "Bachelor of Science in Civil Engineering",
+            "Bachelor of Engineering (Building and Civil Engineering)",
+            "Bachelor in Business Administration",
+            "Bachelor in Business Administration",
+            "Bachelor of Commerce(Accounting, Finance, Marketing, HRM, Transport and Logistics, Procurement, Management Science options)",
+            "Bachelor of Journalism and Mass Communication",
+            "Bachelor of Science in Development Studies (Community Development or Project Management option)",
+            "Bachelor of Science in Tourism Management",
+            "Bachelor of Technology in Industrial Microbiology and Biotechnology",
+            "Bachelor of Technology in Applied Chemistry (Analytical and Industrial Options)",
+            "Bachelor of Science in Food Technology and Quality Assurance",
+            "Bachelor of Technology in Medical Laboratory Sciences",
+            "Bachelor of Science in Marine Resource Management",
+            "Bachelor of Science in Community Health",
+            "Bachelor of Technology in Renewable Energy and Environmental Physics",
+            "Bachelor of Technology in Applied Physics (Electronics and instrumentation)",
+            "Bachelor of Science in Mathematics and Computer Science",
+            "Bachelor of Science in Statistics and Computer Science",
+            "Bachelor in Business Administration",
+            "Bachelor of Commerce(Accounting, Finance, Marketing, HRM, Transport and Logistics, Procurement, Management Science options)",
+            "Bachelor of Journalism and Mass Communication",
+            "Bachelor of Science in Tourism Management",
+            "Bachelor of Science in Development Studies (Community Development or Project Management option)",
+            "Bachelor of Science in Electrical and Electronic Engineering",
+            "Bachelor of Science in Information Technology",
+            "Bachelor Of Technology in Information and Communication Technology",
+            "Bachelor of Science in Civil Engineering",
+            "Bachelor of Engineering (Building and Civil Engineering)",
+            "Bachelor in Business Administration",
+            "Bachelor in Business Administration",
+            "Bachelor of Commerce(Accounting, Finance, Marketing, HRM, Transport and Logistics, Procurement, Management Science options)",
+            "Bachelor of Journalism and Mass Communication",
+            "Bachelor of Science in Development Studies (Community Development or Project Management option)",
+            "Bachelor of Science in Tourism Management",
+            "Bachelor of Technology in Industrial Microbiology and Biotechnology",
+            "Bachelor of Technology in Applied Chemistry (Analytical and Industrial Options)",
+            "Bachelor of Science in Food Technology and Quality Assurance",
+            "Bachelor of Technology in Medical Laboratory Sciences",
+            "Bachelor of Science in Marine Resource Management",
+            "Bachelor of Science in Community Health",
+            "Bachelor of Technology in Renewable Energy and Environmental Physics",
+            "Bachelor of Technology in Applied Physics (Electronics and instrumentation)",
+            "Bachelor of Science in Mathematics and Computer Science",
+            "Bachelor of Science in Statistics and Computer Science",
+            "Bachelor in Business Administration",
+            "Bachelor of Commerce(Accounting, Finance, Marketing, HRM, Transport and Logistics, Procurement, Management Science options)",
+            "Bachelor of Journalism and Mass Communication",
+            "Bachelor of Science in Tourism Management",
+            "Bachelor of Science in Development Studies (Community Development or Project Management option)",
+            "Diploma in Technology (Electrical Power Engineering)",
+            "Diploma in Technology (Electronics Engineering)",
+            "Diploma in Technology (Telecoms and Information Engineering)",
+            "Diploma in Technology (Instrumentation and Control Engineering)",
+            "Diploma in Technology (Computer Network Engineering)",
+            "Diploma in Technology (Medical Engineering)",
+            "Diploma in Mechanical Engineering(Production Option)",
+            "Diploma in Mechanical Engineering(Plant Opt)",
+            "Diploma in Chemical Engineering",
+            "in Mechanical Engineering (Automotive Opt)",
+            "Diploma in Information Communication Technology",
+            "Diploma in Building and Civil Engineering(Building Construction or Civil Engineering option)",
+            "Diploma in Architecture",
+            "Diploma in Quantity Surveying",
+            "Diploma in Business Administration",
+            "Diploma in Accountancy",
+            "Diploma in Front Office Operations and Customer Care Management",
+            "Diploma in Sales and Marketing",
+            "Diploma in Procurement and Materials Management",
+            "Diploma in Secretarial and Office Management",
+            "Diploma in Business Management",
+            "Diploma in Human Resource Management and Industrial Relations",
+            "International Diploma in Logistics and Transport Management",
+            "Diploma in Graphic Design",
+            "Diploma in Mass Communication (Electronic or Print Media Option)",
+            "Diploma in Community Development and Counselling.",
+            "Diploma in Research Activities.",
+            "Diploma in Entrepreneurship.",
+            "Diploma in Information Sciences(Library or Archives option)",
+            "Diploma in Tourism Management",
+            "Diploma in Hotel and Institutional Management",
+            "Diploma in Food Science and Nutrition",
+            "Diploma in Nautical Sciences",
+            "Diploma in Science Laboratory Technology",
+            "Diploma in Applied Biology",
+            "Diploma in Industrial Microbiology and Biotechnology",
+            "Diploma in Food Technology and Quality Assurance",
+            "Diploma in Analytical Chemistry",
+            "Diploma in Nutrition and Dietetics",
+            "Diploma in Medical Laboratory Sciences",
+            "Diploma in Pharmaceutical Technology",
+            "Diploma in Environment and Health Sciences.",
+            "Diploma in Community Health and HIV Management",
+            "Diploma in Environmental Sciences.",
+            "Diploma in Nutrition and Health Sciences",
+            "Diploma in Business Administration",
+            "Diploma in accountancy",
+            "Diploma in Front Office Operations and Customer",
+            "Diploma in Sales and Marketing",
+            "Diploma in Procurement and Materials Management",
+            "Diploma in Business Management",
+            "Diploma in Secretarial and Office Management",
+            "International Diploma in Logistics and Transport Management",
+            "Diploma in Human Resource Management and Industrial Relations",
+            "Diploma in Graphic Design",
+            "Diploma in Mass Communication (Electronic or Print Media Option)",
+            "Diploma in Community Development and Counselling.",
+            "Diploma in Research Activities.",
+            "Diploma in Entrepreneurship.",
+            "Diploma in Information Sciences(Library or Archives option)"
+    ];  
+
+        // Define the number of courses per page
+        const coursesPerPage = 10;
+        
+        // Function to display courses for a given page
+        function displayCourses(page) {
+            const start = (page - 1) * coursesPerPage;
+            const end = start + coursesPerPage;
+            const coursesToShow = courses.slice(start, end);
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+            coursesToShow.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Function to display pagination buttons
+        function displayPaginationButtons() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+            const numPages = Math.ceil(courses.length / coursesPerPage);
+            for (let i = 1; i <= numPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.addEventListener("click", function() {
+                    displayCourses(i);
+                    const current = document.querySelector(".pagination button.active");
+                    if (current) {
+                        current.classList.remove("active");
+                    }
+                    this.classList.add("active");
+                });
+                pagination.appendChild(button);
+            }
+            // Display the first page initially
+            displayCourses(1);
+            // Mark the first page button as active
+            pagination.firstChild.classList.add("active");
+        }
+        
+        // Display pagination buttons when the page loads
+        displayPaginationButtons();
+    </script>
+</body>
+</html>

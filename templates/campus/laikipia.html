@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Bachelor of Arts (Kiswahili and Communication)",
+            "Bachelor of Arts (English and Communication)",
+            "Bachelor of Arts (Communication and Media)",
+            "Bachelor of Library and Information Studies",
+            "Bachelor of Arts (Peace and Conflict Studies)",
+            "Bachelor of Science (Geography)",
+            "Bachelor of Psychology",
+            "Bachelor of Science (Community Development)",
+            "Bachelor of Arts (Criminology and Security Studies)",
+            "Bachelor of Science (Environmental Science)",
+            "Bachelor of Education (Arts)",
+            "Bachelor of Education (Science)",
+            "Bachelor of Science",
+            "Bachelor of Science (Information and Communication Technology)",
+            "Bachelor of Science (Computer Science)",
+            "Bachelor of Commerce",
+            "Bachelor of Science (Economics and Statistics)",
+            "Bachelor of Science (Statistics)",
+            "Bachelor of Science (Agricultural Economics)",
+            "Bachelor of Agribusiness Management",
+            "Bachelor of Arts (History and Economics)",
+            "Bachelor of Arts (Economics and Sociology)",
+            "Bachelor of Agricultural Education and Extension",
+            "Bachelor of Education Arts (Primary option)",
+            "Bachelor of Education Arts (secondary option)",
+            "Bachelor of Early Childhood Development Education",
+            "Bachelor of Sports Science and Management",
+            "Diploma in Communication and Technology (DICT)",
+            "Diploma in French i-iv (DELFAI)",
+            "Diploma in Community Development",
+            "Diploma in Sport Science and Management",
+            "Diploma in Procurement and Logistics Management",
+            "Diploma in Business Management",
+            "Diploma in Library and Information Studies",
+            "Diploma in Education (Arts)",
+            "Diploma in Guidance and Counselling",
+            "Diploma in Education Arts – (Primary and Secondary option)",
+            "Diploma in Education: Math and Computer studies"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

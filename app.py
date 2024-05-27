@@ -1,8 +1,11 @@
-from flask import Flask, render_template, jsonify, request, url_for
+from flask import Flask, render_template, jsonify, request, url_for, redirect
 import json
 import requests
 import os
 from werkzeug.utils import secure_filename
+# from flaskblog.models import Post, User
+# from flask_login import  login_user, current_user, logout_user, login_requirements
+# from flaskblog.form import loginF
 
 app = Flask(__name__)
 
@@ -18,7 +21,7 @@ def show():
 @app.route("/login")
 def display():
     institutions_data = load_institutions_data()
-    return render_template('index.html', institutions=institutions_data['institutions'])
+    return render_template('index.html', institutions=institutions_data["institutions"])
 
 @app.route("/signup")
 def signUp():

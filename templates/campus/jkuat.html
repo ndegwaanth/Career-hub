@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Bachelor of Business Information Technology",
+            "Bachelor of Commerce",
+            "Bachelor of Construction Management",
+            "Bachelor of Landscape Architecture",
+            "Bachelor of Purchasing & Supplies Management",
+            "Bachelor Of Radiography",
+            "Bachelor of Science Biochemistry",
+            "Bachelor of Science in Industrial Biotechnology",
+            "Bachelor of Architectural Technology formerly (Bachelor of Architecture)",
+            "BSc. Agribusiness Economics and Food Industry Management",
+            "BSc. Actuarial Science",
+            "BSc. Agribusiness Management and Enterprise Development",
+            "BSc. Agricultural Economics and Rural Development",
+            "BSc. Analytical Chemistry",
+            "BSc. Animal Health, Production and Processing",
+            "BSc. Biochemistry & Molecular Biology",
+            "BSc. Biomechanical and Process Engineering",
+            "BSc. Biotechnology",
+            "BSc. Botany",
+            "BSc. Chemistry",
+            "BSc. Civil Engineering",
+            "BSc. Computer Science",
+            "BSc. Computer Technology",
+            "BSc. Control and Instrumentation",
+            "BSc. Crop Protection",
+            "BSc. Electrical & Electronic Engineering",
+            "BSc. Electronic & Computer Engineering",
+            "BSc. Environmental Horticulture And Landscaping Technology",
+            "BSc. Financial Engineering",
+            "BSc. Food Science and Nutrition",
+            "BSc. Food Science and Postharvest Technology",
+            "BSc. Geomatics Engineering",
+            "BSc. Horticulture",
+            "BSc. Human Nutrition and Dietetics",
+            "BSc. Industrial Chemistry",
+            "BSc. Information Technology",
+            "BSc. Land Resource Planning and Management",
+            "BSc. Mechanical Engineering",
+            "BSc. Mechatronics Engineering",
+            "BSc. Medical Laboratory Sciences",
+            "BSc. Medical Microbiology",
+            "Bsc. Mining and Mineral Processing Engineering",
+            "BSc. Physics",
+            "BSc. Soil, Water & Environmental Engineering",
+            "BSc. Telecommunication & Information Engineering",
+            "Diploma in Clinical Medicine",
+            "Diploma in HIV/AIDS Management",
+            "Diploma In Architecture",
+            "Diploma in Business Administration",
+            "Diploma in Business Information Technology",
+            "Diploma in Food Technology",
+            "Diploma in Information Technology",
+            "Diploma in Purchasing & Supplies Management"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

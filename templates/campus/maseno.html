@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maseno University Undergraduate Courses</title>
+    <style>
+        .aiu-header {
+            background-color: crimson;
+            width: 100%;
+            height: 80px;
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: lightgray;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: crimson;
+            color: white;
+        }
+        .pagination button.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <header class="aiu-header"></header>
+    </div>
+    <div>
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>Courses Offered</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const courses = [
+            "Diploma in Business Administration",
+            "Diploma in Economics",
+            "Diploma in Small Enterprise Finance",
+            "Diploma in Management",
+            "Diploma in Strategic Purchasing and Supplies Management",
+            "Diploma in Sales and Marketing",
+            "Diploma in Youth and Women Groups Programmes Management",
+            "Diploma in Project Design and Implementation",
+            "Diploma in Human Resource Management",
+            "Diploma in e-Commerce and e-Business Systems",
+            "Diploma in Enterprise Development and Management",
+            "Diploma in Management of Transport Systems",
+            "Diploma in Strategic Management",
+            "Diploma in County Management",
+            "Diploma in Management of NGO’s",
+            "Diploma in Entrepreneurship",
+            "Diploma in Health Care Economics",
+            "Diploma in Project Management",
+            "Diploma in Journalism and Mass Communication",
+            "Diploma in French",
+            "Diploma in Public Relations",
+            "Diploma in Theology and Religion",
+            "Diploma in Social Work",
+            "Diploma in Literature",
+            "Diploma in Conflict Resolution",
+            "Diploma in Social Work",
+            "Diploma in Interior Design",
+            "Diploma in Peace Building",
+            "Diploma in Film Studies",
+            "Diploma in Entrepreneurship Education",
+            "Diploma in Environmental Education",
+            "Diploma in Disability",
+            "Diploma in Early Childhood Education",
+            "Diploma in Sign Language",
+            "Diploma in Special Needs Education",
+            "Diploma in Guidance and Counselling",
+            "Diploma in School Administration",
+            "Diploma in Education Administration",
+            "Diploma in Public Administration",
+            "Diploma in Community Development",
+            "Diploma in Diplomacy",
+            "Diploma in Peace and Security Studies",
+            "Diploma in Travel and Tourism Management",
+            "Diploma in Hospitality Management",
+            "Diploma in HIV and AIDS Determinants",
+            "Diploma in Prevention and Management",
+            "Diploma in Health Economics",
+            "Diploma in Medical Laboratory and Community Health",
+            "Diploma in Actuarial Science",
+            "Diploma in Information Technology",
+            "Diploma in Project Monitoring and Evaluation",
+            "Diploma in Urban Management",
+            "Bachelor of Business Administration with IT",
+            "Bachelor of Arts (Business Studies with IT)",
+            "Bachelor of Arts (Economics with IT)",
+            "Bachelor of Arts (with IT)",
+            "Bachelor of Arts (Drama and Theatre Studies with IT)",
+            "Bachelor of Arts (Sociology and Anthropology with IT)",
+            "Bachelor of Arts (Communication and Media Technology with IT)",
+            "Bachelor of Arts (Music with IT)",
+            "Bachelor of Arts (Textile, Apparel Design and Fashion Merchandising with IT)",
+            "Bachelor of Arts (Interior Design with IT)",
+            "Bachelor of Arts (Criminology with IT)",
+            "Bachelor of Arts (Theology with IT)",
+            "Bachelor of Arts (Religion with IT)",
+            "Bachelor of Psychology (with IT)",
+            "Bachelor of Arts (Fine Arts with IT)",
+            "Bachelor of Arts (French with IT)",
+            "Bachelor of Arts (Philosophy with IT)",
+            "Bachelor of Arts (Kiswahili with IT)",
+            "Bachelor of Arts (History and Archaeology with IT)",
+            "Bachelor of Arts (Language and Communication with IT)",
+            "Bachelor of Arts (Literature with IT)",
+            "Bachelor of Education Arts",
+            "Bachelor of Education (Arts with IT)",
+            "Bachelor of Education (Science with IT)",
+            "Bachelor of Education (Special Needs Education with IT)",
+            "Bachelor of Education (Early Childhood Education with IT)",
+            "Bachelor of Education (French with IT)",
+            "Bachelor of Education (Music with IT)",
+            "Bachelor of Medicine & Bachelor of Surgery (MBChB) with IT",
+            "Bachelor of Science in Nursing with IT",
+            "Bachelor of Science (Political Science with IT)",
+            "Bachelor of Science (International Relations and Diplomacy with IT)",
+            "Bachelor of Science (Development Studies with IT)",
+            "Bachelor of Science (Environmental Science with IT)",
+            "Bachelor of Science (Earth Science with IT)",
+            "Bachelor of Science (Geography and Natural Resources Management with IT)",
+            "Bachelor of Science (Climate Change and Development with IT)",
+            "Bachelor of Science (Basic Science with IT)",
+            "Bachelor of Science (Eco-Tourism, Hotel and Institution Management with IT)",
+            "Bachelor of Science (Aquatic Resources Conservation and Development with IT)",
+            "Bachelor of Science (Industrial Chemistry with IT)",
+            "Bachelor of Science (Medical Laboratory Science with IT)",
+            "Bachelor of Science (Nutrition and Dietetics with IT)",
+            "Bachelor of Science (Medical Biotechnology with IT)",
+            "Bachelor of Science (Pharmaceutical Sciences with IT)",
+            "Bachelor of Science (Public Health with IT)",
+            "Bachelor of Science in Nursing (BScN)",
+            "Bachelor of Science (Applied Statistics with IT)",
+            "Bachelor of Science (Actuarial Science with IT)",
+            "Bachelor of Science (Mathematical Science)",
+            "Bachelor of Science (Mathematics and Business with IT)",
+            "Bachelor of Science (Information and Communications Technology Management)",
+            "Bachelor of Science (Computer Science)",
+            "Bachelor of Science (Information Technology)",
+            "Bachelor of Science (Computer Technology)",
+            "Bachelor of Science (Horticulture with IT)",
+            "Bachelor of Science (Agribusiness Management with IT)",
+            "Bachelor of Science (Animal Science with IT)",
+            "Bachelor of Science (Soil Science with IT)",
+            "Bachelor of Science (Fisheries and Aquaculture with IT)",
+            "Bachelor of Science (Agronomy with IT)",
+            "Bachelor of Science (Agricultural Economics with IT)",
+            "Bachelor of Science (Agricultural Education with IT)",
+            "Bachelor of Arts (Urban and Regional Planning with IT)",
+            "Bachelor of Arts (Disaster Management with IT)",
+            "Bachelor of Arts (Gender Development with IT)"
+        ];
+
+        const rowsPerPage = 20;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "DIPLOMA IN SOCIAL WORK AND COMMUNITY DEVELOPMENT",
+            "DIPLOMA IN MECHATRONIC ENGINEERING",
+            "DIPLOMA IN IN SUPPLY CHAIN MANAGEMENT",
+            "DIPLOMA IN BUSINESS MANAGEMENT",
+            "DIPLOMA IN TOURISM MANAGEMENT",
+            "DIPLOMA IN INFORMATION COMMUNICATION TECHNOLOGY",
+            "CRAFT IN AUTOMOTIVE ENGINEERING",
+            "CERTIFICATE IN BUSINESS MANAGEMENT",
+            "CRAFT INFORMATION COMMUNICATION TECHNOLOGY",
+            "CERTIFICATE IN ELECTRICAL AND ELECTRONIC ENGINEERING (POWER OPTION)",
+            "CERTIFICATE IN ELECTRICAL AND ELECTRONIC TECHNOLOGY",
+            "CERTIFICATE IN FOOD AND BEVERAGE PRODUCTION, SALES AND SERVICES",
+            "CERTIFICATE IN INFORMATION COMMUNICATION TECHNOLOGY",
+            "DIPLOMA IN ELECTRICAL ENGINEERING (POWER)",
+            "CRAFT IN MECHATRONICS ENGINEERING",
+            "CERTIFICATE IN SOCIAL WORK",
+            "CERTIFICATE IN SUPPLY CHAIN MANAGEMENT",
+            "CERTIFICATE IN TOURISM MANAGEMENT",
+            "TRADE TEST GRADE III I IN MOTOR VEHICLE MECHANICS",
+            "TRADE TEST GRADE III I IN ARC WELDING",
+            "TRADE TEST GRADE III I IN HAIRDRESSING",
+            "TRADE TEST GRADE III I IN DRESSMAKING",
+            "ARTISAN CERTIFICATE IN FOOD & BEVERAGE PRODUCTION, SERVICE AND SALES",
+            "TRADE TEST GRADE III I IN BEAUTY THERAPY",
+            "TRADE TEST GRADE III I IN MOTOR VEHICLE ELECTRONICS"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                cell.textContent = course;
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

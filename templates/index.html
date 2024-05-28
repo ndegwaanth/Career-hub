@@ -7,38 +7,101 @@
     <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
     <script src="/static/js/index.js"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+   
 </head>
+<style>
+        .newheader {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .clickable-row {
+            cursor: pointer;
+        }
+</style>
 <body>
     <div class="newheader">
         <header></header>
     </div>
     
     <div class="app-text">
-        <input type="text" name="text-boxt" placeholder="search for campuses you are in" class="text-field">
-        <button type="button" onclick="filterTable()">Search</button>
+        <input type="text" name="text-box" placeholder="search for campuses you are in" class="text-field">
+        <button type="button">Search</button>
     </div>
     <div class="table-form">
-        <table border="1">
+        <table>
             <thead>
-                <th>#</th>
-                <th>KEY</th>
-                <th>Institution Name</th>
-                <th>Category</th>
+                <tr>
+                    <th>#</th>
+                    <th>KEY</th>
+                    <th>Institution Name</th>
+                    <th>Category</th>
+                </tr>
             </thead>
-
             <tbody>
                 {% for item in institutions %}
-                    <tr>
+                    <tr class="clickable-row" data-href="{{ url_for('show_campus', code=item.code) }}"></tr>
                         <td>{{ item.id }}</td>
-                        <td>{{ item.code }}</td>
+                        <td class="abbrv">{{ item.code }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.type }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div><br>
-</div>
+    </div>
+    
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="{{ url_for('display', page=page-1) }}">Previous</a>
+        {% endif %}
+        <span>Page {{ page }}</span>
+        {% if page * per_page < total %}
+            <a href="{{ url_for('display', page=page+1) }}">Next</a>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const rows = document.querySelectorAll('.clickable-row');
+            rows.forEach(row => {
+                row.addEventListener('click', () => {
+                    window.location.href = row.dataset.href;
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

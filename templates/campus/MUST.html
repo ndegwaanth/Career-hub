@@ -45,7 +45,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>University Courses</h2>
+        <h2>MERU UNIVERSITY OF SCIENCE AND TECHNOLOGY Courses</h2>
     </div>
     <table id="courseTable">
         <thead>
@@ -63,63 +63,39 @@
 
     <script>
         const courses = [
-            "Bachelor of Arts",
-            "Bachelor of Arts (Social Work)",
-            "Bachelor of Arts (Gender & Development Studies)",
-            "Bachelor of Education (Arts)",
+            "Bachelor of Science in Statistics",
+            "Bachelor of Science in Actuarial Science",
+            "Bachelor of Science in Mathematics and Computer Science",
+            "Bachelor of Science (Physical Science option)",
+            "Bachelor of Science (Biological Science option)",
             "Bachelor of Education (Science)",
-            "Bachelor of Education (Early Childhood)",
-            "Bachelor of Science (Agriculture)",
-            "Bachelor of Science (Dryland Agriculture)",
-            "Bachelor of Science (Horticulture)",
-            "Bachelor of Science (Range Management)",
-            "Bachelor of Science (Dryland Animal Science)",
-            "Bachelor of Science (Foods Nutrition and Dietetics)",
-            "Bachelor of Science (Agribusiness Management & Entrepreneurship)",
-            "Bachelor of Science (Agricultural Education & Extension)",
-            "Bachelor of Science (Hydrology and Water Resources Management)",
-            "Bachelor of Science (Fisheries Management and Aquatic Technology)",
-            "Bachelor of Science (Applied Aquaculture Sciences)",
-            "Bachelor of Science (Mathematics)",
-            "Bachelor of Science (Actuarial Science)",
-            "Bachelor of Science (Statistics)",
-            "Bachelor of Science (Biology )",
-            "Bachelor of Science (Molecular Biology & Biochemistry)",
-            "Bachelor of Science (Chemistry)",
-            "Bachelor of Science (Physics)",
-            "Bachelor of Science (Electronics)",
-            "Bachelor of Science (Forestry)",
-            "Bachelor of Science (Environmental Conservation & Natural Resources Management)",
-            "Bachelor of Science (Land Resources Management)",
-            "Bachelor of Science (Environmental Management)",
-            "Bachelor of Science (Agro-ecosystems and Environmental Management)",
-            "Bachelor of Science (Public Health)",
-            "Bachelor of Science (Nursing)",
-            "Bachelor of Science (Population Health)",
-            "Bachelor of Science (Meteorology)",
-            "Bachelor of Science (Geology)",
-            "Bachelor of Science (Computer Science)",
-            "Bachelor of Information Technology",
+            "Bachelor of Science in Public Health",
+            "Bachelor of Science in Community Health and Development",
+            "Bachelor of Science in Computer Science",
+            "Bachelor of Science in Computer Technology",
+            "Bachelor of Science in Information Science",
+            "Bachelor of Science in Security & Forensics",
+            "Bachelor of Technology in Electrical & Electronics Engineering",
+            "Bachelor of Technology in Civil Engineering",
+            "Bachelor of Technology in Mechanical Engineering",
+            "Bachelor of Science in Information Technology",
+            "Bachelor of Science in Agribusiness Management",
+            "Bachelor of Science in Agriculture",
+            "Bachelor of Science in Animal Production",
+            "Bachelor of Science in Agricultural Education &Extension",
+            "Bachelor of Science in Crop Protection",
+            "Bachelor of Science in Horticulture",
+            "Bachelor of Science in Food Science and Technology",
+            "Bachelor of Science in Food Science and Nutrition",
+            "Bachelor of Science in Food Science and Management",
+            "Bachelor of Science in Nutrition and Dietetics",
+            "Bachelor of Co-operative Management",
+            "Bachelor of Science in Economics",
+            "Bachelor of Business Information Technology",
             "Bachelor of Commerce",
-            "Bachelor of Procurement and Supply Chain Management",
-            "Bachelor of Economics and Statistics",
-            "Bachelor of Economics",
-            "Bachelor of Project Planning & Management",
-            "Bachelor of Business & Information Technology",
-            "Bachelor of Science in Medical Microbiology.",
-            "Bachelor of Science in Aquatic Sciences",
-            "Diploma in Sales and Marketing",
-            "Diploma in Human Resource Management",
-            "Diploma in Purchasing and Supplies Management",
-            "Diploma in Business Management",
-            "Diploma in Forestry",
-            "Diploma in Information Technology",
-            "Diploma in Computer Science",
-            "Diploma in Range land Management",
-            "Diploma in Apiculture",
-            "Diploma in Animal Health",
-            "Diploma in Crop Protection",
-            "Diploma in Electronics"
+            "Bachelor of Purchasing and Supplies Management",
+            "Bachelor of Business Administration",
+            "Bachelor of Science in Public Health"
         ];
 
         const rowsPerPage = 10;
@@ -165,7 +141,7 @@
         }
 
         function updatePaginationButtons() {
-            const buttons = document.querySelectorAll(".pagination-btn");
+            const buttons = document.querySelectorAll(".pagination button");
             buttons.forEach(button => {
                 button.classList.remove("active");
                 if (parseInt(button.textContent) === currentPage) {

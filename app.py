@@ -2,8 +2,12 @@ from flask import Flask, abort, render_template, request
 import json
 import os
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Load institutions data from JSON file
 def load_institutions_data():
@@ -14,7 +18,7 @@ def load_institutions_data():
         return {"institutions": []}
 
 @app.route("/")
-def show_login():
+def show():
     return render_template("login.html")
 
 @app.route("/login")
@@ -41,7 +45,7 @@ UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Check if the file extension is allowed
+# Checking if the file extension is allowed
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

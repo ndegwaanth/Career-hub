@@ -69,6 +69,7 @@ input {
     width: 100%;
     height: 50px;
     background-color: gray;
+    text-align: center;
 }
 .header-div {
     width: 100%;
@@ -99,4 +100,9 @@ input {
     border: 4px solid black;
     border-radius: 4px;
     background-color: aqua;
+}
+.signup-forms {
+    text-align: justify;
+    padding-left: 40%;
+    
 }

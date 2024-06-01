@@ -62,6 +62,7 @@
     </div>
 
     <script>
+        var count = 0;
         const courses = [
             "Bachelor of Science in Electrical and Electronic Engineering",
             "Bachelor of Science in Information Technology",
@@ -222,6 +223,12 @@
         
         // Display pagination buttons when the page loads
         displayPaginationButtons();
+
+        for (count; count <= length(courses); count++){
+            if (courses[count] === "Bachelor of Science in Electrical and Electronic Engineering"){
+                window.location.href = '{{ url_for("display") }}';
+            }
+        }
     </script>
 </body>
 </html>

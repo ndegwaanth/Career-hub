@@ -752,8 +752,8 @@ data='[
 # Create directories
 echo "$data" | jq -c '.[]' | while read -r entry; do
     code=$(echo "$entry" | jq -r '.code')
-    name=$(echo "$entry" | jq -r '.name')
-    mkdir -p "./$code - $name"
+    #name=$(echo "$entry" | jq -r '.name')
+    touch  "./$code.html"
 done
 
 echo "Directories created successfully."

@@ -98,10 +98,25 @@
                 const maxTraineesCell = document.createElement("td");
                 nameCell.textContent = course.name;
                 maxTraineesCell.textContent = course.maxTrainees;
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                nameCell.appendChild(link);
                 row.appendChild(nameCell);
                 row.appendChild(maxTraineesCell);
                 tableBody.appendChild(row);
+
             });
+        }
+
+        function formatCourseName(course) {
+            return course.replace('&', 'and').replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "_").toLowerCase();
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/ALDAITTICourse/${formattedCourseName}`;
         }
 
         function setupPagination() {

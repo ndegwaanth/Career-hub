@@ -17,7 +17,9 @@ def load_institutions_data():
         return {"institutions": []}
 
 def sanitize_course_name(course_name):
+    #remove non-alphanumeric characters except spaces, and replace spaces with underscores
     return course_name.replace('&', 'and').replace(' ', '_').lower()
+
 
 @app.route("/")
 def show():
@@ -120,7 +122,7 @@ def course_3(course_name):
         return render_template(template_path)
     except Exception as e:
         print(f"Error: {e}")
-        abort(404)
+        abort(404)          
 
 @app.route("/AIU")
 def AIU():
@@ -200,6 +202,21 @@ def course_8(course_name):
 def ASMTTI():
     return render_template("campus/ASM TTI.html")
 
+#BAM
+@app.route('/course_automating_folder_creating/BMACourse/<course_name>')
+def BMA(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BMACourse/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+def BMA():
+    return render_template("campus/BAHATI IBAS.html")
+
+
 #BAC BUKURA
 @app.route('/course_automating_folder_creating/BAC - BUKURA AGRICULTURAL COLLEGE/<course_name>')
 def course_9(course_name):
@@ -245,6 +262,36 @@ def course_11(course_name):
 @app.route("/BARA")
 def BARA():
     return render_template("campus/BARA.html")
+
+#BARINGO TC
+@app.route('/course_automating_folder_creating/BaringoTcCourse/<course_name>')
+def BARINGO_TC(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BaringoTcCourse/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BARINGO-TC")
+def BARINGO():
+    return render_template("campus/BARINGO TC.html")
+
+#BELGUT TVC
+@app.route('/course_automating_folder_creating/BelgutTvcCourse/<course_name>')
+def BELGUT_TVC(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BelgutTvcCourse/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BELGUT-TVC")
+def BELGUT():
+    return render_template("campus/BELGUT TVC.html")
 
 #CU
 @app.route('/course_automating_folder_creating/CU - CHUKA UNIVERSITY/<course_name>')

@@ -63,31 +63,21 @@
 
     <script>
         const courses = [
-            "DIPLOMA IN SOCIAL WORK AND COMMUNITY DEVELOPMENT",
-            "DIPLOMA IN MECHATRONIC ENGINEERING",
-            "DIPLOMA IN IN SUPPLY CHAIN MANAGEMENT",
-            "DIPLOMA IN BUSINESS MANAGEMENT",
-            "DIPLOMA IN TOURISM MANAGEMENT",
-            "DIPLOMA IN INFORMATION COMMUNICATION TECHNOLOGY",
-            "CRAFT IN AUTOMOTIVE ENGINEERING",
-            "CERTIFICATE IN BUSINESS MANAGEMENT",
-            "CRAFT INFORMATION COMMUNICATION TECHNOLOGY",
-            "CERTIFICATE IN ELECTRICAL AND ELECTRONIC ENGINEERING (POWER OPTION)",
-            "CERTIFICATE IN ELECTRICAL AND ELECTRONIC TECHNOLOGY",
-            "CERTIFICATE IN FOOD AND BEVERAGE PRODUCTION, SALES AND SERVICES",
-            "CERTIFICATE IN INFORMATION COMMUNICATION TECHNOLOGY",
-            "DIPLOMA IN ELECTRICAL ENGINEERING (POWER)",
-            "CRAFT IN MECHATRONICS ENGINEERING",
-            "CERTIFICATE IN SOCIAL WORK",
-            "CERTIFICATE IN SUPPLY CHAIN MANAGEMENT",
-            "CERTIFICATE IN TOURISM MANAGEMENT",
-            "TRADE TEST GRADE III I IN MOTOR VEHICLE MECHANICS",
-            "TRADE TEST GRADE III I IN ARC WELDING",
-            "TRADE TEST GRADE III I IN HAIRDRESSING",
-            "TRADE TEST GRADE III I IN DRESSMAKING",
-            "ARTISAN CERTIFICATE IN FOOD & BEVERAGE PRODUCTION, SERVICE AND SALES",
-            "TRADE TEST GRADE III I IN BEAUTY THERAPY",
-            "TRADE TEST GRADE III I IN MOTOR VEHICLE ELECTRONICS"
+            "Certificate in Information Communication Technology (ICT)",
+            "Certificate in Building Technology (Building Technology)",
+            "Certificate in Fashion Design",
+            "Artisan Certificate in Electrical Installation",
+            "Artisan Certificate in Food and Beverage",
+            "Artisan Certificate in Fashion Design",
+            "Certificate in Plumbing Technology",
+            "Artisan Certificate in Plumbing Technology",
+            "Certificate in Food and Beverage Production",
+            "Artisan Certificate in Building Technology",
+            "Craft Certificate in Electrical and Electronics Engineering (Power Option)",
+            "Diploma in Information Communication Technology (ICT)",
+            "Diploma in Fashion Design",
+            "Diploma in Food and Beverage",
+            "Diploma in Electrical and Electronics Engineering (Power Option)"
         ];
 
         const rowsPerPage = 10;
@@ -104,10 +94,27 @@
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
-                cell.textContent = course;
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
                 row.appendChild(cell);
                 tableBody.appendChild(row);
             });
+        }
+
+        function formatCourseName(course) {
+            // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
+            let sanitized = course.replace('&', 'and');
+            sanitized = sanitized.replace(/[^a-zA-Z0-9 ]/g, "");
+            sanitized = sanitized.replace(/ /g, "_").toLowerCase();
+            return sanitized;
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/BelgutTvcCourse/${formattedCourseName}`;
         }
 
         function setupPagination() {

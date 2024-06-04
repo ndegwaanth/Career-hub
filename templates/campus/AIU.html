@@ -105,10 +105,23 @@
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
-                cell.textContent = course;
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
                 row.appendChild(cell);
                 tableBody.appendChild(row);
             });
+        }
+
+        function formatCourseName(course) {
+            return course.replace('&', 'and').replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "_").toLowerCase();
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/AIUCourse/${formattedCourseName}`;
         }
 
         function setupPagination() {

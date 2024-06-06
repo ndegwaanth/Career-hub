@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Certificate in Agriculture and Community Development",
+            "Certificate in Animal Health and Production",
+            "Certificate in Artificial Insemination",
+            "Certificate in Fashion Design (Level 5)",
+            "Certificate in Horticulture",
+            "Certificate in various Agricultural value chains",
+            "Diploma in Agribusiness Management and Marketing",
+            "Diploma in Agricultural Extension & Community Development",
+            "Diploma in Agricultural Irrigation & Drainage Engineering",
+            "Diploma in Agriculture and Biotechnology",
+            "Diploma in Agriculture and Human Ecology Extension",
+            "Diploma in Animal Health and Production Management",
+            "Diploma in Animal Production and Health Management",
+            "Diploma in Education (Home Science & Biology)",
+            "Diploma in Farm Business Management",
+            "Diploma in Fashion Design Technology",
+            "Diploma in Food and Beverage Production",
+            "Diploma in Horticulture",
+            "Diploma in Information Communication Technology",
+            "Diploma in Secondary Teacher Education",
+            "Diploma in Technical Instructor Education",
+            "Diploma in Technical Trainer Education",
+            "Upgrading Certificate in Animal Health"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function formatCourseName(course) {
+            return course.replace('&', 'and').replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "_").toLowerCase();
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/BAC - BUKURA AGRICULTURAL COLLEGE/${formattedCourseName}`;
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

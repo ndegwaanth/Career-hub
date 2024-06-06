@@ -45,7 +45,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>University of Nairobi Courses</h2>
+        <h2>University Courses</h2>
     </div>
     <table id="courseTable">
         <thead>
@@ -62,227 +62,255 @@
     </div>
 
     <script>
-    const courses = [
-        "Diploma In Leather Technology",
-        "Diploma In Estate Agency And Property Management",
-        "Post Graduate Diploma In Housing Administration",
-        "Diploma In Business Management (fes)",
-        "Diploma In Sales & Marketing(fes)",
-        "Diploma In Adult Education And Community Development",
-        "Diploma In Youth Development Work",
-        "Diploma In Early Childhood Education",
-        "Diploma In Purchasing & Supplies Management",
-        "Diploma In Business Management",
-        "Diploma In Sales & Marketing",
-        "Diploma In Human Resource Management",
-        "Diploma In Public Relations",
-        "Diploma In Guidance And Counseling",
-        "Higher Diploma In Medical Diagnostic Ultrasound",
-        "Diploma In Audiology And Public Health Otology",
-        "Diploma Programmes in Humanities and Social Sciences",
-        "Ordinary Diploma",
-        "Diploma In Women, Leadership And Governance In Africa",
-        "Diploma In Chinese Language And Culture",
-        "Diploma In International Studies/strategic Studies",
-        "Diploma In International Studies",
-        "Diploma In Theatre And Film Studies",
-        "Diploma In Criminology And Social Order",
-        "Diploma In Social Work And Social Development",
-        "Diploma Programmes in Kisumu Campus",
-        "Diploma In Purchasing And Supplies Management",
-        "Diploma In Human Resource Management",
-        "Diploma In Guidance And Counseling",
-        "Ordinary Diploma",
-        "Diploma In Sales And Marketing",
-        "Diploma In Guidance And Counseling",
-        "Diploma In Project Planning And Management",
-        "Diploma In Human Resource Management",
-        "Diploma In Public Relations",
-        "Diploma In Purchasing And Supplies Management",
-        "Diploma In Business Management",
-        "Diploma In Project Planning And Management",
-        "Diploma In Adult Education And Community Development",
-        "Diploma In Youth Development Work",
-        "Diploma In Business Management",
-        "Diploma In Sales And Marketing",
-        "Diploma In Human Resource Management",
-        "Diploma In Purchasing And Supplies Management",
-        "Diploma In Public Relations",
-        "Diploma In Guidance And Counseling",
-        "Ordinary Diploma",
-        "B.sc. ( Food Science & Technology)",
-        "B.sc. ( Agriculture,education And Extension)",
-        "B.sc. (agribusiness Management)",
-        "B.sc. (food Science, Nutrition & Dietetics)",
-        "Climate Change & Development",
-        "Bachelor Of Science In Agribusiness Management",
-        "Bsc.agricultural Economics",
-        "Bsc.agricultural Education And Extension",
-        "Bachelor Of Science In Agriculture(animal Science Major)",
-        "Bachelor Of Science Fisheries And Aquaculture Management",
-        "Bachelor Of Science In Wildlife Management And Conservation",
-        "Bsc Food Science And Technology",
-        "Bsc Food Nutrition And Dietetics",
-        "B.sc. (agriculture)",
-        "B.sc. ( Range Management)",
-        "Bsc. Management Of Agroecosystems & Environment",
-        "Bachelor Of Science In Horticulture",
-        "Bachelor Of Veterinary Medicine",
-        "Bsc. In Wildlife Management And Conservation",
-        "B.sc. (bio-medical Technology)",
-        "Bachelor Of Science In Wildlife Management",
-        "Bachelor Programmes in Biological and Physical Sciences",
-        "Bachelor Of Science In Environmental Chemistry",
-        "Bachelor Of Science In Analytical Chemistry",
-        "B.sc Industrial Chemistry",
-        "B.sc Chemistry",
-        "Bachelor Of Science In Petroleum Geoscience",
-        "Bachelor Of Science In Actuarial Science",
-        "Bachelor Of Science In Mathematics",
-        "Bachelor Of Science In Statistics",
-        "Bachelor Of Science Mathematics And Computing",
-        "B.sc. (meteorology)",
-        "Bachelor Of Science In Atmospheric Science",
-        "B.sc (microprocessor Technology & Instrumentation)",
-        "B.sc. In Astronomy And Astrophysics",
-        "Bachelor Of Science In Physics",
-        "Bed Science (physics)",
-        "B.sc.(biology)",
-        "Bsc. Microbiology And Biotechnology",
-        "Bachelor Of Science In Environmental Conservation And Natural Resource Management",
-        "Bsc. Computer Science",
-        "B.sc. Industrial Chemistry",
-        "Bachelor Of Science",
-        "Bachelor Of Science (distance Learning)",
-        "Bsc Geology (distance Learning)",
-        "Bachelor Of Education (science)",
-        "B.sc. Analytical Chemistry",
-        "Bachelor Of Science In Chemistry",
-        "Bas/barch",
-        "B.a. Design",
-        "B.sc. (civil Engineering)",
-        "B.sc. (environmental And Biosystems Engineering)",
-        "B.sc. ( Electrical And Electronic Engineering)",
-        "B.sc.(surveying)",
-        "B.sc. ( Electrical Engineering)",
-        "B.sc. (geospatial Engineering)",
-        "B.sc. (mechanical Engineering)",
-        "Bachelor Of Real Estate",
-        "Bachelor Of Construction Management",
-        "Bachelor Of Quantity Surveying",
-        "B.a (urban & Regional Planning)",
-        "Bachelor Of Commerce By Distance",
-        "Bachelor Of Arts(distance)",
-        "Bachelor Of Education (arts, B.ed Distance)",
-        "Bachelor Of Education Arts In History And Geography",
-        "Bachelor Of Education Arts In History And Cre",
-        "Bachelor Of Education Arts In Geography And Mathematics",
-        "Bachelor Of Education Arts In Double Mathematics",
-        "Bachelor Of Education Arts In Mathematics And Business Studies",
-        "Bachelor Of Education Arts In Geography And Environmental Studies And Business Studies",
-        "Bachelor Of Education Arts In English And Literature",
-        "Bachelor Of Education Science In Physics And Geography And Environmental Studies",
-        "Bachelor Of Education Science In Double Mathematics",
-        "Bachelor Of Science In Physics",
-        "Bachelor Of Science In Analytical Chemistry",
-        "Bachelor Of Science In Industrial Chemistry",
-        "Bachelor Of Science In Geology",
-        "Bachelor Of Science In Meteorology",
-        "Bachelor Of Science In Pure Mathematics",
-        "Bachelor Of Science In Applied Mathematics",
-        "Bachelor Of Science In Zoology",
-        "Bachelor Of Science In Botany",
-        "Bachelor Of Science In Geography And Environmental Studies",
-        "Bachelor Of Arts In History",
-        "Bachelor Of Arts In Tourism",
-        "Bachelor Of Arts In English Language",
-        "Bachelor Of Arts In Literature",
-        "Bachelor Of Arts In Kiswahili",
-        "Bachelor Of Arts In Communication",
-        "Bachelor Of Arts In Arabic Studies",
-        "Bachelor Of Arts Sociology And Social Work",
-        "Bachelor Of Arts Christian Religious Studies",
-        "Bachelor Of Arts In Philosophy",
-        "Bachelor Of Arts In Psychology",
-        "Bachelor Of Arts In Guidance And Counseling",
-        "Bachelor Of Arts In Geography And Environmental Studies",
-        "Bachelor Of Commerce In Accounting",
-        "Bachelor Of Commerce In Finance",
-        "Bachelor Of Commerce In Marketing",
-        "Bachelor Of Commerce In Human Resource Management",
-        "Bachelor Of Commerce In Insurance And Management",
-        "Bachelor Of Commerce In Procurement And Purchasing And Supplies",
-        "Bachelor Of Commerce In Operations Management",
-        "Bachelor Of Commerce In Business Information Systems",
-        "Bachelor Of Arts In Political Science And Public Administration",
-        "B.ed Science By Distance Learning",
-        "Bachelor Of Education (arts, B. Ed)",
-        "B.ed.(arts) in Mathematics And Economics)",
-        "B.ed (arts) Linguistics And Literature",
-        "B.ed (arts) Mathematics And Geography",
-        "B.ed (arts) Kiswahili And Religious Studies",
-        "B.ed (arts) History And Religious Studies",
-        "B.ed (arts) History And Economics",
-        "B.ed (arts) Geography And History",
-        "B.ed (arts) Business And Mathematics",
-        "B.ed (arts) Business And Economics",
-        "B.ed (arts) Kiswahili And Literature",
-        "B.ed (arts) History And Kiswahili",
-        "B.ed (arts) Geography And Religious Studies",
-        "B.ed (arts) Geography And Economics",
-        "B.ed (arts) Business And Geography",
-        "Bachelor Of Science Agricultural Education And Extention (b.sc. Ae&e)",
-        "Bachelor Of Sciences (b.sc)",
-        "Bachelor Of Education (science) (b.ed.sc)",
-        "Bachelor Of Education In Early Childhood Education",
-        "Bachelor Of Education (arts)"
-    ];
+        const courses = [
+            "Diploma In Leather Technology",
+            "Diploma In Estate Agency And Property Management",
+            "Post Graduate Diploma In Housing Administration",
+            "Diploma In Business Management (fes)",
+            "Diploma In Sales & Marketing(fes)",
+            "Diploma In Adult Education And Community Development",
+            "Diploma In Youth Development Work",
+            "Diploma In Early Childhood Education",
+            "Diploma In Purchasing & Supplies Management",
+            "Diploma In Business Management",
+            "Diploma In Sales & Marketing",
+            "Diploma In Human Resource Management",
+            "Diploma In Public Relations",
+            "Diploma In Guidance And Counseling",
+            "Higher Diploma In Medical Diagnostic Ultrasound",
+            "Diploma In Audiology And Public Health Otology",
+            "Diploma Programmes in Humanities and Social Sciences",
+            "Ordinary Diploma",
+            "Diploma In Women, Leadership And Governance In Africa",
+            "Diploma In Chinese Language And Culture",
+            "Diploma In International Studies/strategic Studies",
+            "Diploma In International Studies",
+            "Diploma In Theatre And Film Studies",
+            "Diploma In Criminology And Social Order",
+            "Diploma In Social Work And Social Development",
+            "Diploma Programmes in Kisumu Campus",
+            "Diploma In Purchasing And Supplies Management",
+            "Diploma In Human Resource Management",
+            "Diploma In Guidance And Counseling",
+            "Ordinary Diploma",
+            "Diploma In Sales And Marketing",
+            "Diploma In Guidance And Counseling",
+            "Diploma In Project Planning And Management",
+            "Diploma In Human Resource Management",
+            "Diploma In Public Relations",
+            "Diploma In Purchasing And Supplies Management",
+            "Diploma In Business Management",
+            "Diploma In Project Planning And Management",
+            "Diploma In Adult Education And Community Development",
+            "Diploma In Youth Development Work",
+            "Diploma In Business Management",
+            "Diploma In Sales And Marketing",
+            "Diploma In Human Resource Management",
+            "Diploma In Purchasing And Supplies Management",
+            "Diploma In Public Relations",
+            "Diploma In Guidance And Counseling",
+            "Ordinary Diploma",
+            "Bachelor of Science in ( Food Science & Technology)",
+            "Bachelor of Science in ( Agriculture,education And Extension)",
+            "Bachelor of Science in (agribusiness Management)",
+            "Bachelor of Science in (food Science, Nutrition & Dietetics)",
+            "Climate Change & Development",
+            "Bachelor of Science in Agribusiness Management",
+            "Bachelor of Science in agricultural Economics",
+            "Bachelor of Science in agricultural Education And Extension",
+            "Bachelor of Science in Agriculture(animal Science Major)",
+            "Bachelor of Science in Fisheries And Aquaculture Management",
+            "Bachelor of Science in Wildlife Management And Conservation",
+            "Bachelor of Science in Food Science And Technology",
+            "Bachelor of Science in Food Nutrition And Dietetics",
+            "Bachelor of Science in (agriculture)",
+            "Bachelor of Science in ( Range Management)",
+            "Bachelor of Science in Management Of Agroecosystems & Environment",
+            "Bachelor of Science in Horticulture",
+            "Bachelor Of Veterinary Medicine",
+            "Bachelor of Science in Wildlife Management And Conservation",
+            "Bachelor of Science in (bio-medical Technology)",
+            "Bachelor of Science in Wildlife Management",
+            "Bachelor Programmes in Biological and Physical Sciences",
+            "Bachelor of Science in Environmental Chemistry",
+            "Bachelor of Science in Analytical Chemistry",
+            "Bachelor of Science in Industrial Chemistry",
+            "Bachelor of Science in Chemistry",
+            "Bachelor of Science in Petroleum Geoscience",
+            "Bachelor of Science in Actuarial Science",
+            "Bachelor of Science in Mathematics",
+            "Bachelor of Science in Statistics",
+            "Bachelor of Science in Mathematics And Computing",
+            "Bachelor of Science in (meteorology)",
+            "Bachelor of Science in Atmospheric Science",
+            "Bachelor of Science in (microprocessor Technology & Instrumentation)",
+            "Bachelor of Science in Astronomy And Astrophysics",
+            "Bachelor of Science in Physics",
+            "Bachelor of Education Science (physics)",
+            "Bachelor of Science in (biology)",
+            "Bachelor of Science in Microbiology And Biotechnology",
+            "Bachelor of Science in Environmental Conservation And Natural Resource Management",
+            "Bachelor of Science in Computer Science",
+            "Bachelor of Science in Industrial Chemistry",
+            "Bachelor of Science",
+            "Bachelor of Science (distance Learning)",
+            "Bachelor of Science in Geology (distance Learning)",
+            "Bachelor of Education (science)",
+            "Bachelor of Science in Analytical Chemistry",
+            "Bachelor of Science in Chemistry",
+            "Bas/barch",
+            "Bachelot of arts in Design",
+            "Bachelor of Science in (civil Engineering)",
+            "Bachelor of Science in (environmental And Biosystems Engineering)",
+            "Bachelor of Science in ( Electrical And Electronic Engineering)",
+            "Bachelor of Science in (surveying)",
+            "Bachelor of Science in ( Electrical Engineering)",
+            "Bachelor of Science in (geospatial Engineering)",
+            "Bachelor of Science in (mechanical Engineering)",
+            "Bachelor Of Real Estate",
+            "Bachelor Of Construction Management",
+            "Bachelor Of Quantity Surveying",
+            "Bachelor of arts in (urban & Regional Planning)",
+            "Bachelor Of Commerce By Distance",
+            "Bachelor Of Arts(distance)",
+            "Bachelor Of Education (arts, Bachelor of Education Distance)",
+            "Bachelor Of Education Arts In History And Geography",
+            "Bachelor Of Education Arts In History And Cre",
+            "Bachelor Of Education Arts In Geography And Mathematics",
+            "Bachelor Of Education Arts In Double Mathematics",
+            "Bachelor Of Education Arts In Mathematics And Business Studies",
+            "Bachelor Of Education Arts In Geography And Environmental Studies And Business Studies",
+            "Bachelor Of Education Arts In English And Literature",
+            "Bachelor Of Education Science In Physics And Geography And Environmental Studies",
+            "Bachelor Of Education Science In Double Mathematics",
+            "Bachelor of Science in Physics",
+            "Bachelor of Science in Analytical Chemistry",
+            "Bachelor of Science in Industrial Chemistry",
+            "Bachelor of Science in Geology",
+            "Bachelor of Science in Meteorology",
+            "Bachelor of Science in Pure Mathematics",
+            "Bachelor of Science in Applied Mathematics",
+            "Bachelor of Science in Zoology",
+            "Bachelor of Science in Botany",
+            "Bachelor of Science in Geography And Environmental Studies",
+            "Bachelor Of Arts In History",
+            "Bachelor Of Arts In Tourism",
+            "Bachelor Of Arts In English Language",
+            "Bachelor Of Arts In Literature",
+            "Bachelor Of Arts In Kiswahili",
+            "Bachelor Of Arts In Communication",
+            "Bachelor Of Arts In Arabic Studies",
+            "Bachelor Of Arts Sociology And Social Work",
+            "Bachelor Of Arts Christian Religious Studies",
+            "Bachelor Of Arts In Philosophy",
+            "Bachelor Of Arts In Psychology",
+            "Bachelor Of Arts In Guidance And Counseling",
+            "Bachelor Of Arts In Geography And Environmental Studies",
+            "Bachelor Of Commerce In Accounting",
+            "Bachelor Of Commerce In Finance",
+            "Bachelor Of Commerce In Marketing",
+            "Bachelor Of Commerce In Human Resource Management",
+            "Bachelor Of Commerce In Insurance And Management",
+            "Bachelor Of Commerce In Procurement And Purchasing And Supplies",
+            "Bachelor Of Commerce In Operations Management",
+            "Bachelor Of Commerce In Business Information Systems",
+            "Bachelor Of Arts In Political Science And Public Administration",
+            "Bachelor of Education Science By Distance Learning",
+            "Bachelor Of Education (arts, Bachelor of Education)",
+            "Bachelor of Education (arts) in Mathematics And Economics)",
+            "Bachelor of Education (arts) Linguistics And Literature",
+            "Bachelor of Education (arts) Mathematics And Geography",
+            "Bachelor of Education (arts) Kiswahili And Religious Studies",
+            "Bachelor of Education (arts) History And Religious Studies",
+            "Bachelor of Education (arts) History And Economics",
+            "Bachelor of Education (arts) Geography And History",
+            "Bachelor of Education (arts) Business And Mathematics",
+            "Bachelor of Education (arts) Business And Economics",
+            "Bachelor of Education (arts) Kiswahili And Literature",
+            "Bachelor of Education (arts) History And Kiswahili",
+            "Bachelor of Education (arts) Geography And Religious Studies",
+            "Bachelor of Education (arts) Geography And Economics",
+            "Bachelor of Education (arts) Business And Geography",
+            "Bachelor of Science Agricultural Education And Extention (Bachelor of Science in Ae&e)",
+            "Bachelor Of Sciences (Bachelor of Science)",
+            "Bachelor of Education (science) (Bachelor of Education.sc)",
+            "Bachelor Of Education In Early Childhood Education",
+            "Bachelor Of Education (arts)"
+        ];
 
-     // Define the number of courses per page
-        const coursesPerPage = 20;
-        
-        // Function to display courses for a given page
-        function displayCourses(page) {
-            const start = (page - 1) * coursesPerPage;
-            const end = start + coursesPerPage;
-            const coursesToShow = courses.slice(start, end);
+        // Remove duplicates
+        const uniqueCourses = [...new Set(courses)];
+
+        // Sort courses alphabetically
+        uniqueCourses.sort();
+
+        const rowsPerPage = 20;
+        let currentPage = 1;
+
+        function displayTable(page) {
             const tableBody = document.getElementById("tableBody");
             tableBody.innerHTML = "";
-            coursesToShow.forEach(course => {
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = uniqueCourses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
-                cell.textContent = course;
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
                 row.appendChild(cell);
                 tableBody.appendChild(row);
             });
         }
-        
-        // Function to display pagination buttons
-        function displayPaginationButtons() {
+
+        function formatCourseName(course) {
+            return course.replace('&', 'and').replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "_").toLowerCase();
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/UON - UNIVERSITY OF NAIROBI/${formattedCourseName}`;
+        }
+
+        function setupPagination() {
             const pagination = document.getElementById("pagination");
             pagination.innerHTML = "";
-            const numPages = Math.ceil(courses.length / coursesPerPage);
-            for (let i = 1; i <= numPages; i++) {
+
+            const totalPages = Math.ceil(uniqueCourses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement("button");
                 button.textContent = i;
-                button.addEventListener("click", function() {
-                    displayCourses(i);
-                    const current = document.querySelector(".pagination button.active");
-                    if (current) {
-                        current.classList.remove("active");
-                    }
-                    this.classList.add("active");
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
                 });
                 pagination.appendChild(button);
             }
-            // Display the first page initially
-            displayCourses(1);
-            // Mark the first page button as active
-            pagination.firstChild.classList.add("active");
         }
-        
-        // Display pagination buttons when the page loads
-        displayPaginationButtons();
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
     </script>
 </body>
 </html>

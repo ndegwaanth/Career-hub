@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Artisan Certificate in Fashion Design and Garment Making(Fashion Design and Garment Making)",
+            "Artisan Certificate in Hairdressing and Beauty Therapy(Hairdressing and Beauty Therapy)",
+            "Certificate in Cooperative Management(Cooperative Management)",
+            "Certificate in Electrical and Electronics Technology()",
+            "Certificate in Fashion Design and Garment Making()",
+            "Certificate in Hairdressing And Beauty Therapy(Hairdressing And Beauty Therapy)",
+            "Certificate in Human Resource Management(HRM)",
+            "Certificate in Information Technology(Information Technology)",
+            "Certificate in Supply Chain Management ()",
+            "Computer Packages and Applications()",
+            "Diploma in Cooperative Management(Cooperative Management)",
+            "Diploma in Electrical and Electronics Engineering (Telecommunication Option)",
+            "Diploma in Electrical and Electronics Engineering(Power Option)()",
+            "Diploma in Fashion Design and Clothing Technology(Fashion Design and Clothing Technology)",
+            "Diploma in Human Resource Management(Human Resource Management)",
+            "Diploma in Information Communication Technology(ICT)",
+            "Diploma in Supply Chain Management(Supply Chain Management)"
+        ];
+
+        // Sort courses alphabetically
+        courses.sort();
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function formatCourseName(course) {
+            // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
+            let sanitized = course.replace('&', 'and');
+            sanitized = sanitized.replace(/[^a-zA-Z0-9 ]/g, "");
+            sanitized = sanitized.replace(/ /g, "_").toLowerCase();
+            return sanitized;
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/BORABU TVC - BORABU TECHNICAL AND VOCATIONAL COLLEGE/${formattedCourseName}`;
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

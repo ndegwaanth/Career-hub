@@ -8,6 +8,8 @@
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}"> -->
     <link rel="stylesheet" href="/static/styles/index.css">
     <script src="/static/js/index.js"></script>
+    <link rel="icon" href="/static/Colorful Modern Infinity Technology Free Logo.png" type="image/png">
+
     <style>
         input {
             border-radius: 5px;
@@ -15,16 +17,34 @@
             width: 200px;
             height: 20px;
         }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #005bb5;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="header-div">
-        <header class="new">
-            <div>
-                <h1>CAREER HUB SIGNUP PAGE</h1>
-            </div>
-        </header>
-    </div>
+    <header>
+        <h1>SIGN UP PAGE</h1>
+        <nav>
+            <a href="{{ url_for('show') }}">Login</a>
+        </nav>
+    </header>
 
     <div>
         <div class="signup-forms">

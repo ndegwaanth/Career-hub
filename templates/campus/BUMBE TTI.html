@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Courses with Pagination</title>
+    <style>
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>University Courses</h2>
+    </div>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>Courses Offered</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const courses = [
+            "Accounting Technician Certificate(ATC)",
+            "Advanced Diploma in Total Quality Management(Quality Management)",
+            "Building Technology(Building and Construction)",
+            "Certified Public Accountant(CPA)",
+            "Certificate in Animal Health and Production",
+            "Certificate in Artificial Insemination",
+            "Certificate in Business Information Technology(BIT)",
+            "Certificate in Business Management(Business Management)",
+            "Certificate in Carpentry and Joinery(Carpentry and Joinery)",
+            "Certificate in Early Childhood Development and Education(ECDE)",
+            "Certificate in Electrical Engineering Technology(Electrical Engineering)",
+            "Certificate in Fashion Design(Fashion Design)",
+            "Certificate in Fisheries Technology(Fisheries Technology)",
+            "Certificate in Food and Beverage Management(Food and Beverage Management)",
+            "Certificate in Hairdressing and Beauty Therapy(Hairdressing & Beauty Therapy)",
+            "Certificate in Information Technology(Information Technology)",
+            "Certificate in Masonry, Carpentry and Joinery()",
+            "Certificate in Motor Vehicle Mechanics(Motor Vehicle Mechanics)",
+            "Certificate in Networking(Computer Networking)",
+            "Certificate in Plumbing(Plumbing)",
+            "Certificate in Secretarial Studies(Secretarial Studies)",
+            "Certificate in Social Work and Community Development(Social Work)",
+            "Computer Packages()",
+            "Craft Certificate in Carpentry and Furniture Technology(Carpentry)",
+            "Craft Certificate in Motor Vehicle Mechanics(Motor Vehicle Mechanics)",
+            "CPA Part I(CPA)",
+            "CPA Part II(CPA)",
+            "Diploma in Automotive Engineering(Automotive Engineering)",
+            "Diploma in Building and Civil Engineering(Building and Civil Engineering)",
+            "Diploma in Business Administration(Business Administration)",
+            "Diploma in Business Management(Business Management)",
+            "Diploma in Electrical Engineering(Electrical Engineering)",
+            "Diploma in Fashion Design(Fashion Design)",
+            "Diploma in Food and Beverage Management(Food and Beverage Management)",
+            "Diploma in Housekeeping Management(Housekeeping Management)",
+            "Diploma in Human Resource Management(Human Resource Management)",
+            "Diploma in Information Communication Technology(ICT)",
+            "Diploma in Instrumentation and Control Engineering(Instrumentation and Control)",
+            "Diploma in Library and Information Science(Library and Information Science)",
+            "Diploma in Nutrition and Diet Therapy(Nutrition)",
+            "Diploma in Purchasing and Supplies Management(Purchasing and Supplies)",
+            "Diploma in Sales and Marketing(Sales and Marketing)",
+            "Diploma in Social Work and Community Development(Social Work and Community Development)",
+            "Diploma in Supply Chain Management(Supply Chain Management)",
+            "Diploma in Telecommunication Engineering(Telecommunication Engineering)",
+            "Diploma in Water and Sanitation Engineering(Water and Sanitation)",
+            "Radio and TV Repair()"
+        ];
+
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedCourses = courses.slice(start, end);
+
+            paginatedCourses.forEach(course => {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+                const link = document.createElement("a");
+                link.href = '#';
+                link.textContent = course;
+                link.onclick = () => navigateToCourse(course);
+                cell.appendChild(link);
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function formatCourseName(course) {
+            return course.replace('&', 'and').replace(/[^a-zA-Z0-9 ]/g, "").replace(/ /g, "_").toLowerCase();
+        }
+
+        function navigateToCourse(course) {
+            const formattedCourseName = formatCourseName(course);
+            window.location.href = `/course_automating_folder_creating/BUMBETTICOURSE/${formattedCourseName}`;
+        }
+
+        function setupPagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(courses.length / rowsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement("button");
+                button.textContent = i;
+                button.classList.add("pagination-btn");
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+                button.addEventListener("click", () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    updatePaginationButtons();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll(".pagination button");
+            buttons.forEach(button => {
+                button.classList.remove("active");
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                }
+            });
+        }
+
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>

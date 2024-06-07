@@ -20,12 +20,15 @@ def sanitize_course_name(course_name):
     #remove non-alphanumeric characters except spaces, and replace spaces with underscores
     return course_name.replace('&', 'and').replace(' ', '_').lower()
 
-
 @app.route("/")
+def career_hub():
+    return render_template("landingPage.html")
+
+@app.route("/login")
 def show():
     return render_template("login.html")
 
-@app.route("/login")
+@app.route("/career_hub")
 def display():
     institutions_data = load_institutions_data()
     page = request.args.get('page', 1, type=int)
@@ -278,6 +281,21 @@ def BARINGO_TC(course_name):
 def BARINGO():
     return render_template("campus/BARINGO TC.html")
 
+#BONDO TTI
+@app.route('/course_automating_folder_creating/BondoTTICourse/<course_name>')
+def BONDO_COLLEGE(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BondoTTICourse/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BONDO_COURSE")
+def BONDO():
+    return render_template("campus/BONDO TTI.html")
+
 #BELGUT TVC
 @app.route('/course_automating_folder_creating/BelgutTvcCourse/<course_name>')
 def BELGUT_TVC(course_name):
@@ -292,6 +310,129 @@ def BELGUT_TVC(course_name):
 @app.route("/BELGUT-TVC")
 def BELGUT():
     return render_template("campus/BELGUT TVC.html")
+
+#Bomet TVC
+@app.route('/course_automating_folder_creating/BometTvcCourse/<course_name>')
+def BOMETCAMPUS(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BometTvcCourse/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BOMET_COURSE")
+def BOMETCOURSE():
+    return render_template("campus/BOMET TVC.html")
+
+#BUC
+@app.route('/course_automating_folder_creating/BucCourse/<course_name>')
+def BUC_COLLEGE(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BucCourse/{sanitized_name}.html'
+    print(template_path)
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BUC_COLLEGE_COURSES")
+def buc():
+    return render_template("campus/BUC.html")
+
+#BAC
+@app.route('/course_automating_folder_creating/BAC - BUKURA AGRICULTURAL COLLEGE/<course_name>')
+def BAC_COURSE(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BAC - BUKURA AGRICULTURAL COLLEGE/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BUKURA")
+def BAC_CAMP():
+    return render_template("campus/BAC.html")
+
+#BORABU TVC
+@app.route('/course_automating_folder_creating/BORABU TVC - BORABU TECHNICAL AND VOCATIONAL COLLEGE/<course_name>')
+def BORABU_TVC(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BORABU TVC - BORABU TECHNICAL AND VOCATIONAL COLLEGE/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BORABU-TVC")
+def BORABU():
+    return render_template("campus/BORABU TVC.html")
+
+#BUMBE TTI
+@app.route('/course_automating_folder_creating/BUMBETTICOURSE/<course_name>')
+def bumbe_tti(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BUMBETTICOURSE/{sanitized_name}.html'
+    print(template_path)
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BUMBE")
+def BUMBE():
+    return render_template("campus/BUMBE TTI.html")
+
+
+#BUNGOMA NORTH TVC
+@app.route('/course_automating_folder_creating/BUNGOMA NORTH TVC - BUNGOMA NORTH TECHNICAL AND VOCATIONAL COLLEGE/<course_name>')
+def BUNGOMA_COURSE_TVC(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BUNGOMA NORTH TVC - BUNGOMA NORTH TECHNICAL AND VOCATIONAL COLLEGE/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BUNGOMA")
+def BUNGOMA():
+    return render_template("campus/BUNGOMA NORTH TVC.html")
+
+#BUNYALA TECHNICAL COLLEGE
+@app.route('/course_automating_folder_creating/BUNYALA_TECHNICAL/<course_name>')
+def BUNYALA_TECHNICAL(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BUNYALA_TECHNICAL/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BUNYALA-COLLEGE")
+def BUNYALA():
+    return render_template("campus/BUNYALA TVC.html")
+
+#BURETI TTI
+@app.route('/course_automating_folder_creating/BURETI TTI - BURETI TECHNICAL TRAINING INSTITUTE/<course_name>')
+def BURETI_COURSE(course_name):
+    sanitized_name = sanitize_course_name(course_name)
+    template_path = f'course_automating_folder_creating/BURETI TTI - BURETI TECHNICAL TRAINING INSTITUTE/{sanitized_name}.html'
+    try:
+        return render_template(template_path)
+    except Exception as e:
+        print(f"Error: {e}")
+        abort(404)
+
+@app.route("/BURETI_CAMPUS")
+def BURETI():
+    return render_template("campus/BURETI TTI.html")
 
 #CU
 @app.route('/course_automating_folder_creating/CU - CHUKA UNIVERSITY/<course_name>')
@@ -936,9 +1077,9 @@ def course_54(course_name):
         print(f"Error: {e}")
         abort(404)
 
-# @app.route("/NEPOLY")
-# def MUST():
-#     return render_template("campus/NEPOLY.html")
+@app.route("/NEPOLY")
+def NEPOLY():
+    return render_template("campus/NEPOLY.html")
 
 # NGONG TVC
 @app.route('/course_automating_folder_creating/NGONG TVC - NGONG TECHNICAL AND VOCATIONAL COLLEGE/<course_name>')

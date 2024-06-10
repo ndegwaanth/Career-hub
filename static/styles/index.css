@@ -110,3 +110,155 @@ input {
     padding-left: 40%;
     
 }
+
+/* Default styles (Mobile first) */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    padding: 15px;
+}
+
+header, nav, section, footer {
+    margin: 15px 0;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+
+    header, nav, section, footer {
+        margin: 10px 0;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    nav ul li {
+        margin-bottom: 5px;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    body {
+        font-size: 15px;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+
+    header, nav, section, footer {
+        margin: 12px 0;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 15px;
+    }
+
+    header, nav, section, footer {
+        margin: 15px 0;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    body {
+        font-size: 17px;
+    }
+    
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header, nav, section, footer {
+        margin: 20px 0;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px;
+    }
+    
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 25px;
+    }
+
+    header, nav, section, footer {
+        margin: 25px 0;
+    }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) {
+    body {
+        background-color: #f0f0f0;
+    }
+    
+    header, nav, section, footer {
+        margin: 20px 0;
+    }
+}
+
+/* Portrait orientation */
+@media (orientation: portrait) {
+    body {
+        background-color: #ffffff;
+    }
+    
+    header, nav, section, footer {
+        margin: 15px 0;
+    }
+}
+
+/* High resolution screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        font-size: 18px;
+    }
+    
+    header, nav, section, footer {
+        margin: 20px 0;
+    }
+}

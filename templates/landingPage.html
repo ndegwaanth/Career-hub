@@ -23,14 +23,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         header h1 {
             margin: 0;
         }
+        header nav {
+            display: flex;
+            flex-wrap: wrap;
+        }
         header nav a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 5px 10px;
             padding: 10px 20px;
             background-color: #005bb5;
             border-radius: 5px;
@@ -110,10 +115,199 @@
             font-size: 1.5em;
             text-decoration: none;
         }
-        @media (min-width: 768px) {
+        @media (max-width: 575.98px) {
+            body {
+                font-size: 14px;
+            }
+            header {
+                padding: 10px 15px;
+            }
+            header nav a {
+                margin: 5px 0;
+                padding: 10px;
+            }
+            .hero {
+                height: 300px;
+                padding: 10px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            .hero button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .features, .testimonials, .about, .footer {
+                padding: 30px 10px;
+            }
+            .feature-item, .testimonial-item {
+                margin: 10px auto;
+            }
+        }
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            body {
+                font-size: 15px;
+            }
+            header {
+                padding: 12px 18px;
+            }
+            .hero {
+                height: 400px;
+                padding: 15px;
+            }
+            .hero h1 {
+                font-size: 3em;
+            }
+            .hero p {
+                font-size: 1.3em;
+            }
+            .hero button {
+                padding: 12px 25px;
+                font-size: 0.95em;
+            }
+            .features, .testimonials, .about, .footer {
+                padding: 40px 15px;
+            }
+            .feature-item, .testimonial-item {
+                margin: 15px auto;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            body {
+                font-size: 16px;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            .hero {
+                height: 450px;
+                padding: 20px;
+            }
+            .hero h1 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1.4em;
+            }
+            .hero button {
+                padding: 15px 28px;
+                font-size: 1em;
+            }
+            .features, .testimonials, .about, .footer {
+                padding: 50px 20px;
+            }
             .features, .testimonials {
                 display: flex;
                 justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .feature-item, .testimonial-item {
+                margin: 20px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            body {
+                font-size: 17px;
+            }
+            header {
+                padding: 18px 25px;
+            }
+            .hero {
+                height: 500px;
+                padding: 25px;
+            }
+            .hero h1 {
+                font-size: 4em;
+            }
+            .hero p {
+                font-size: 1.5em;
+            }
+            .hero button {
+                padding: 18px 30px;
+                font-size: 1.05em;
+            }
+            .features, .testimonials, .about, .footer {
+                padding: 60px 25px;
+            }
+            .features, .testimonials {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .feature-item, .testimonial-item {
+                margin: 25px;
+            }
+        }
+        @media (min-width: 1200px) {
+            body {
+                font-size: 18px;
+            }
+            header {
+                padding: 20px 30px;
+            }
+            .hero {
+                height: 600px;
+                padding: 30px;
+            }
+            .hero h1 {
+                font-size: 4.5em;
+            }
+            .hero p {
+                font-size: 1.7em;
+            }
+            .hero button {
+                padding: 20px 35px;
+                font-size: 1.1em;
+            }
+            .features, .testimonials, .about, .footer {
+                padding: 70px 30px;
+            }
+            .features, .testimonials {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            .feature-item, .testimonial-item {
+                margin: 30px;
+            }
+        }
+        @media (orientation: landscape) {
+            body {
+                background-color: #f0f0f0;
+            }
+            header {
+                padding: 18px 25px;
+            }
+            .hero {
+                height: 400px;
+                padding: 20px;
+            }
+        }
+        @media (orientation: portrait) {
+            body {
+                background-color: #ffffff;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            .hero {
+                height: 500px;
+                padding: 20px;
+            }
+        }
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                font-size: 18px;
+            }
+            header {
+                padding: 20px 30px;
+            }
+            .hero {
+                height: 600px;
+                padding: 30px;
             }
         }
     </style>
@@ -149,7 +343,7 @@
         </div>
         <div class="feature-item">
             <img src="/static/skills you must develop.png" alt="Market Skills">
-            <h3>Market Skills</h3>
+            <h3>Market Skills</h>
             <p>Insight into the skills required in the marketplace for each course.</p>
         </div>
     </section>
@@ -181,7 +375,7 @@
     </section>
     <footer class="footer">
         <p>&copy; 2024 Campus Explorer Kenya</p>
-        <p><a href="mailto:info@campusfinder.co.ke">Contact Us</a></p>
+        <p><a href="mailto:wldtech296@gmail.com">Contact Us</a></p>
     </footer>
 </body>
 </html>

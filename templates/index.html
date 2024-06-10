@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
     <script src="/static/js/index.js"></script>
     <link rel="icon" href="/static/Colorful Modern Infinity Technology Free Logo.png" type="image/png">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const cells = document.querySelectorAll('.clickable-cell');
@@ -20,50 +22,167 @@
             });
         });
     </script>
+
+    <style>
+        .newheader {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .clickable-cell {
+            cursor: pointer;
+        }
+        .app-text {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .app-text input {
+            flex: 1;
+            max-width: 300px;
+            padding: 10px;
+        }
+        .app-text button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 575.98px) {
+            body {
+                font-size: 14px;
+            }
+            .newheader {
+                padding: 5px;
+            }
+            table, th, td {
+                padding: 6px;
+            }
+            .pagination a {
+                padding: 6px 12px;
+            }
+            .app-text {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .app-text input, .app-text button {
+                max-width: 100%;
+                margin: 5px 0;
+            }
+        }
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            body {
+                font-size: 15px;
+            }
+            .newheader {
+                padding: 8px;
+            }
+            table, th, td {
+                padding: 7px;
+            }
+            .pagination a {
+                padding: 7px 14px;
+            }
+            .app-text {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .app-text input, .app-text button {
+                max-width: 100%;
+                margin: 5px 0;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            body {
+                font-size: 16px;
+            }
+            .newheader {
+                padding: 10px;
+            }
+            table, th, td {
+                padding: 8px;
+            }
+            .pagination a {
+                padding: 8px 16px;
+            }
+            .app-text input {
+                max-width: 400px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            body {
+                font-size: 17px;
+            }
+            .newheader {
+                padding: 12px;
+            }
+            table, th, td {
+                padding: 9px;
+            }
+            .pagination a {
+                padding: 9px 18px;
+            }
+            .app-text input {
+                max-width: 450px;
+            }
+        }
+        @media (min-width: 1200px) {
+            body {
+                font-size: 18px;
+            }
+            .newheader {
+                padding: 15px;
+            }
+            table, th, td {
+                padding: 10px;
+            }
+            .pagination a {
+                padding: 10px 20px;
+            }
+            .app-text input {
+                max-width: 500px;
+            }
+        }
+        #search {
+            height: 10px;
+            margin-top: 40px;
+            margin-left: 5px;
+        }
+    </style>
 </head>
-<style>
-    .newheader {
-        background-color: #4CAF50;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    table, th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    .pagination a {
-        background-color: #f2f2f2;
-        border: none;
-        color: black;
-        padding: 8px 16px;
-        text-decoration: none;
-        cursor: pointer;
-        margin: 0 2px;
-    }
-    .pagination a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .clickable-cell {
-        cursor: pointer;
-    }
-</style>
-<body>
+<body style="font-size: medium;">
     <div class="newheader">
         <header>
             <div>
@@ -74,7 +193,8 @@
     
     <div class="app-text">
         <input style="display: flex;" type="text" name="text-box" placeholder="search for campuses you are in" class="text-field">
-        <button type="button" style="display: flex;">Search</button>
+        <!-- <button type="button" id="search" class="btn btn-primary">Search</button> -->
+        <i class="fa fa-search fa-2x" aria-hidden="true" id="search"></i>
     </div>
     <div class="table-form">
         <table>

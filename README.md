@@ -55,7 +55,7 @@ Throughout this project, I gained significant insights into full stack developme
 I am a full stack developer with a passion for creating solutions that make a difference. Through Campus Explorer Kenya, I aimed to simplify the process of finding educational opportunities in Kenya. I believe in the power of technology to bridge information gaps and empower individuals to make informed decisions.
 
 **Links:**
-- [GitHub Repository](github_repository_url)
-- [Deployed Project](deployed_project_url)
-- [Landing Page](landing_page_url)
-- [LinkedIn Profile](linkedin_profile_url)
+- [GitHub Repository](https://github.com/ndegwaanth/Career-hub)
+- [Deployed Project](http://www.donplackerr.tech)
+- [Landing Page](https://github.com/ndegwaanth/Career-hub/blob/main/static/Landing%20Page%20image.jpeg)
+- [LinkedIn Profile](https://www.linkedin.com/in/anthonyndegwa)

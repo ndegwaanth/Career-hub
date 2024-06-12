@@ -17,6 +17,15 @@ def load_institutions_data():
         return {"institutions": []}
 
 def sanitize_course_name(course_name):
+        """
+    Sanitizes a course name by removing non-alphanumeric characters except spaces, replacing spaces with underscores, and converting the name to lowercase.
+
+    Parameters:
+        course_name (str): The course name to be sanitized.
+
+    Returns:
+        str: The sanitized course name.
+    """
     #remove non-alphanumeric characters except spaces, and replace spaces with underscores
     return course_name.replace('&', 'and').replace(' ', '_').lower()
 

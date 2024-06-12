@@ -29,7 +29,8 @@ Growing up in Kenya, I experienced firsthand the challenges of finding accurate 
 - Deployment: Hosted the static web pages using DigitalOcean and deployed using Gunicorn.
 
 **Key Features:**
-- **Extensive Listings:** ![Image of the extensive listing, course information, and market skills will appear here](listing_image_url)
+![Image of the extensive listing, course information, and market skills will appear here](https://github.com/ndegwaanth/Career-hub/blob/main/static/second.jpeg)
+- **Extensive Listings:** 
   - A comprehensive database of all universities and colleges in Kenya. This feature allows users to explore various educational institutions across the country.
 - **Course Information:**
   - Detailed information on every course offered. Users can find in-depth descriptions of courses, including prerequisites, duration, and career prospects.

@@ -19,7 +19,7 @@ Growing up in Kenya, I experienced firsthand the challenges of finding accurate 
 
 **Architecture Overview:**
 
-![Image of the architecture will appear here](architecture_image_url)
+![Image of the architecture will appear here](https://github.com/ndegwaanth/Career-hub/blob/main/static/presentation_alx.png)
 
 **Technologies Used:**
 - Frontend: HTML5, CSS3, JavaScript

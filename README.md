@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-![Images of the landing page will appear here](image_url)
+![Images of the landing page will appear here](https://github.com/ndegwaanth/Career-hub/blob/main/static/Landing%20Page%20image.jpeg)
 
 **Project Name:** Campus Explorer Kenya  
 **Purpose:** To provide a comprehensive platform that lists universities and colleges in Kenya, offers detailed information on each course, and highlights the market-required skills for every course.  

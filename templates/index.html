@@ -190,12 +190,13 @@
             </div>
         </header>
     </div>
-    
+    <!-- Search bar for searching campuses -->
     <div class="app-text">
         <input style="display: flex;" type="text" name="text-box" placeholder="search for campuses you are in" class="text-field">
         <!-- <button type="button" id="search" class="btn btn-primary">Search</button> -->
         <i class="fa fa-search fa-2x" aria-hidden="true" id="search"></i>
     </div>
+    <!-- Table for displaying institution information -->
     <div class="table-form">
         <table>
             <thead>
@@ -207,8 +208,10 @@
                 </tr>
             </thead>
             <tbody>
+                 <!-- Loop through the institutions and create a row for each one -->
                 {% for item in institutions %}
                     <tr>
+                        <!-- Each cell is a clickable link to the institution's details page -->
                         <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.id }}</td></a>
                         <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.code }}</td></a>
                         <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.name }}</td></a>
@@ -218,11 +221,13 @@
             </tbody>
         </table>
     </div>
-    
+    <!-- Pagination controls -->
     <div class="pagination">
         {% if page > 1 %}
+            <!-- Link to the previous page if current page is greater than 1 -->
             <a href="{{ url_for('display', page=page-1) }}">Previous</a>
         {% endif %}
+        <!-- Display the current page number -->
         <span>Page {{ page }}</span>
         {% if page * per_page < total %}
             <a href="{{ url_for('display', page=page+1) }}">Next</a>

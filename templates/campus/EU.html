@@ -44,9 +44,15 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>BURETI TTI COURSES</h2> <!-- Displays the header text -->
-    </div>
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin-right: auto;">University Courses</h2> <!-- Displays the header text -->
+    <button id="menuButton" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M3 18h18v-2H3v2zM3 13h18v-2H3v2zM3 6v2h18V6H3z"></path>
+        </svg>
+    </button>
+</div>
+
     <table id="courseTable">
         <thead>
             <tr>
@@ -131,7 +137,7 @@
 
         function navigateToCourse(course) {
             const formattedCourseName = formatCourseName(course); // Formats the course name for URL
-            window.location.href = `/course_automating_folder_creating/BURETI TTI - BURETI TECHNICAL TRAINING INSTITUTE/${formattedCourseName}`; // Navigates to the course URL
+            window.location.href = `/course_automating_folder_creating/EASA/${formattedCourseName}`; // Navigates to the course URL
         }
 
         function setupPagination() {

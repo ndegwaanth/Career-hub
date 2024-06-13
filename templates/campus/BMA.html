@@ -6,51 +6,51 @@
     <title>University Courses with Pagination</title>
     <style>
         .header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px;
+            background-color: #4CAF50;  /* Set background color for header */
+            color: white;  /* Set text color for header */
+            text-align: center;  /* Center align the header text */
+            padding: 10px;  /* Add padding to the header */
         }
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            width: 100%;  /* Set table width to 100% */
+            border-collapse: collapse;  /* Collapse table borders */
+            margin-top: 20px;  /* Add top margin to table */
         }
         table, th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+            border: 1px solid #ddd;  /* Set border for table, table header, and table cells */
+            padding: 8px;  /* Add padding to table header and cells */
+            text-align: left;  /* Left align text in table header and cells */
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #f2f2f2;  /* Set background color for table header */
         }
         .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+            display: flex;  /* Use flexbox for pagination container */
+            justify-content: center;  /* Center align pagination buttons */
+            margin-top: 20px;  /* Add top margin to pagination */
         }
         .pagination button {
-            background-color: #f2f2f2;
-            border: none;
-            color: black;
-            padding: 8px 16px;
-            text-decoration: none;
-            cursor: pointer;
+            background-color: #f2f2f2;  /* Set background color for pagination buttons */
+            border: none;  /* Remove border from pagination buttons */
+            color: black;  /* Set text color for pagination buttons */
+            padding: 8px 16px;  /* Add padding to pagination buttons */
+            text-decoration: none;  /* Remove text decoration from pagination buttons */
+            cursor: pointer;  /* Set cursor to pointer for pagination buttons */
         }
         .pagination button.active {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #4CAF50;  /* Set background color for active pagination button */
+            color: white;  /* Set text color for active pagination button */
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h2>University Courses</h2>
+        <h2>University Courses</h2>  <!-- Header title -->
     </div>
     <table id="courseTable">
         <thead>
             <tr>
-                <th>Courses Offered</th>
+                <th>Courses Offered</th>  <!-- Table header -->
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -62,6 +62,7 @@
     </div>
 
     <script>
+        // Array of course names
         const courses = [
             "Certificate in Mechanical Engineering (Mechanical Engineering)",
             "Certificate in Maritime Transport and Logistics (Maritime Transport and Logistics)",
@@ -74,30 +75,33 @@
             "Diploma in Marine Engineering"
         ];
 
-        const rowsPerPage = 10;
-        let currentPage = 1;
+        const rowsPerPage = 10;  // Number of rows to display per page
+        let currentPage = 1;  // Current page number
 
+        // Function to display the courses table
         function displayTable(page) {
             const tableBody = document.getElementById("tableBody");
-            tableBody.innerHTML = "";
+            tableBody.innerHTML = "";  // Clear the table body
 
-            const start = (page - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            const paginatedCourses = courses.slice(start, end);
+            const start = (page - 1) * rowsPerPage;  // Calculate start index
+            const end = start + rowsPerPage;  // Calculate end index
+            const paginatedCourses = courses.slice(start, end);  // Get courses for the current page
 
+            // Create table rows and cells for each course
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
                 const link = document.createElement("a");
-                link.href = '#';
-                link.textContent = course;
-                link.onclick = () => navigateToCourse(course);
-                cell.appendChild(link);
-                row.appendChild(cell);
-                tableBody.appendChild(row);
+                link.href = '#';  // Set link href
+                link.textContent = course;  // Set link text
+                link.onclick = () => navigateToCourse(course);  // Set onclick event for the link
+                cell.appendChild(link);  // Append link to the cell
+                row.appendChild(cell);  // Append cell to the row
+                tableBody.appendChild(row);  // Append row to the table body
             });
         }
 
+        // Function to format course name for URL
         function formatCourseName(course) {
             // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
             let sanitized = course.replace('&', 'and');
@@ -106,45 +110,49 @@
             return sanitized;
         }
 
+        // Function to navigate to course page
         function navigateToCourse(course) {
-            const formattedCourseName = formatCourseName(course);
-            window.location.href = `/course_automating_folder_creating/BMACourse/${formattedCourseName}`;
+            const formattedCourseName = formatCourseName(course);  // Format the course name
+            window.location.href = `/course_automating_folder_creating/BMACourse/${formattedCourseName}`;  // Navigate to the course page
         }
 
+        // Function to set up pagination buttons
         function setupPagination() {
             const pagination = document.getElementById("pagination");
-            pagination.innerHTML = "";
+            pagination.innerHTML = "";  // Clear the pagination
 
-            const totalPages = Math.ceil(courses.length / rowsPerPage);
+            const totalPages = Math.ceil(courses.length / rowsPerPage);  // Calculate total pages
 
+            // Create pagination buttons
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement("button");
-                button.textContent = i;
-                button.classList.add("pagination-btn");
+                button.textContent = i;  // Set button text
+                button.classList.add("pagination-btn");  // Add class to the button
                 if (i === currentPage) {
-                    button.classList.add("active");
+                    button.classList.add("active");  // Add active class to the current page button
                 }
                 button.addEventListener("click", () => {
-                    currentPage = i;
-                    displayTable(currentPage);
-                    updatePaginationButtons();
+                    currentPage = i;  // Set current page
+                    displayTable(currentPage);  // Display table for the current page
+                    updatePaginationButtons();  // Update pagination buttons
                 });
-                pagination.appendChild(button);
+                pagination.appendChild(button);  // Append button to pagination
             }
         }
 
+        // Function to update pagination buttons
         function updatePaginationButtons() {
-            const buttons = document.querySelectorAll(".pagination button");
+            const buttons = document.querySelectorAll(".pagination button");  // Get all pagination buttons
             buttons.forEach(button => {
-                button.classList.remove("active");
+                button.classList.remove("active");  // Remove active class from all buttons
                 if (parseInt(button.textContent) === currentPage) {
-                    button.classList.add("active");
+                    button.classList.add("active");  // Add active class to the current page button
                 }
             });
         }
 
-        displayTable(currentPage);
-        setupPagination();
+        displayTable(currentPage);  // Initial table setup
+        setupPagination();  // Initial pagination setup
     </script>
 </body>
 </html>

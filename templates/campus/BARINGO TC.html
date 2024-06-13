@@ -5,30 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Courses with Pagination</title>
     <style>
+        /* Styling for the header */
         .header {
             background-color: #4CAF50;
             color: white;
             text-align: center;
             padding: 10px;
         }
+        /* Styling for the table */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
+        /* Styling for the table borders and cells */
         table, th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+        /* Styling for the table header */
         th {
             background-color: #f2f2f2;
         }
+        /* Styling for the pagination controls */
         .pagination {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
+        /* Styling for the pagination buttons */
         .pagination button {
             background-color: #f2f2f2;
             border: none;
@@ -37,6 +43,7 @@
             text-decoration: none;
             cursor: pointer;
         }
+        /* Styling for the active pagination button */
         .pagination button.active {
             background-color: #4CAF50;
             color: white;
@@ -44,9 +51,11 @@
     </style>
 </head>
 <body>
+    <!-- Header section with the title -->
     <div class="header">
         <h2>University Courses</h2>
     </div>
+    <!-- Table to display the courses -->
     <table id="courseTable">
         <thead>
             <tr>
@@ -57,11 +66,13 @@
             <!-- Data will be inserted here by JavaScript -->
         </tbody>
     </table>
+    <!-- Pagination controls -->
     <div class="pagination" id="pagination">
         <!-- Pagination buttons will be inserted here by JavaScript -->
     </div>
 
     <script>
+        // Array of courses
         const courses = [
             "Accounting Technicians Certificate (ATC)",
             "Certificate in General Agriculture (General Agriculture)",
@@ -104,17 +115,24 @@
             "Diploma in Electrical and Electronic Technology Engineering"
         ];
 
+        // Number of rows to display per page
         const rowsPerPage = 10;
+        // Variable to track the current page
         let currentPage = 1;
 
+        // Function to display the table for a given page
         function displayTable(page) {
             const tableBody = document.getElementById("tableBody");
+            // Clear existing rows
             tableBody.innerHTML = "";
 
+            // Calculate the start and end index for the current page
             const start = (page - 1) * rowsPerPage;
             const end = start + rowsPerPage;
+            // Get the courses for the current page
             const paginatedCourses = courses.slice(start, end);
 
+            // Loop through the courses and create table rows
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
@@ -128,6 +146,7 @@
             });
         }
 
+        // Function to format course names for the URL
         function formatCourseName(course) {
             // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
             let sanitized = course.replace('&', 'and');
@@ -136,17 +155,22 @@
             return sanitized;
         }
 
+        // Function to navigate to a course's page
         function navigateToCourse(course) {
             const formattedCourseName = formatCourseName(course);
             window.location.href = `/course_automating_folder_creating/BaringoTcCourse/${formattedCourseName}`;
         }
 
+        // Function to set up the pagination buttons
         function setupPagination() {
             const pagination = document.getElementById("pagination");
+            // Clear existing pagination buttons
             pagination.innerHTML = "";
 
+            // Calculate the total number of pages
             const totalPages = Math.ceil(courses.length / rowsPerPage);
 
+            // Create pagination buttons for each page
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement("button");
                 button.textContent = i;
@@ -154,6 +178,7 @@
                 if (i === currentPage) {
                     button.classList.add("active");
                 }
+                // Add event listener to update the current page and display the corresponding table
                 button.addEventListener("click", () => {
                     currentPage = i;
                     displayTable(currentPage);
@@ -163,6 +188,7 @@
             }
         }
 
+        // Function to update the active state of pagination buttons
         function updatePaginationButtons() {
             const buttons = document.querySelectorAll(".pagination button");
             buttons.forEach(button => {
@@ -173,7 +199,9 @@
             });
         }
 
+        // Display the first page of the table on initial load
         displayTable(currentPage);
+        // Set up pagination buttons on initial load
         setupPagination();
     </script>
 </body>

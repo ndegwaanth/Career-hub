@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Career Hub</title>
     <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
     <script src="/static/js/index.js"></script>
@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+    <script src="/static/js/search.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const cells = document.querySelectorAll('.clickable-cell');
@@ -192,9 +193,11 @@
     </div>
     <!-- Search bar for searching campuses -->
     <div class="app-text">
-        <input style="display: flex;" type="text" name="text-box" placeholder="search for campuses you are in" class="text-field">
-        <!-- <button type="button" id="search" class="btn btn-primary">Search</button> -->
-        <i class="fa fa-search fa-2x" aria-hidden="true" id="search"></i>
+        <form action="/career_hub" method="get">
+            <input type="text" name="search_query" placeholder="Search for courses or codes" class="text-field" value="{{ search_query }}">
+            <button type="submit" id="search" class="btn btn-primary">Search</button>
+        </form>
+        <!-- <i class="fa fa-search fa-2x" aria-hidden="true" id="search"></i> -->
     </div>
     <!-- Table for displaying institution information -->
     <div class="table-form">

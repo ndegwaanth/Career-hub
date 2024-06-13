@@ -1,4 +1,4 @@
-from flask import Flask, abort, render_template, request
+from flask import Flask, abort, render_template, request, jsonify
 import json
 import os
 from werkzeug.utils import secure_filename
@@ -17,7 +17,7 @@ def load_institutions_data():
         return {"institutions": []}
 
 def sanitize_course_name(course_name):
-        """
+    """
     Sanitizes a course name by removing non-alphanumeric characters except spaces, replacing spaces with underscores, and converting the name to lowercase.
 
     Parameters:
@@ -39,19 +39,42 @@ def show():
 
 @app.route("/career_hub")
 def display():
+    search_query = request.args.get('search_query', '')
     institutions_data = load_institutions_data()
+    search_query = request.args.get('search_query', '')
     page = request.args.get('page', 1, type=int)
     per_page = 20
-    total = len(institutions_data["institutions"])
+
+    if search_query:
+        search_query = search_query.lower()
+        filtered_institutions = [
+            inst for inst in institutions_data["institutions"]
+            if search_query in inst["name"].lower() or search_query in inst["code"].lower()
+        ]
+    else:
+        filtered_institutions = institutions_data["institutions"]
+
+    total = len(filtered_institutions)
     start = (page - 1) * per_page
     end = start + per_page
-    paginated_institutions = institutions_data["institutions"][start:end]
+    paginated_institutions = filtered_institutions[start:end]
     
     return render_template('index.html', 
                            institutions=paginated_institutions,
                            page=page, 
                            per_page=per_page, 
-                           total=total)
+                           total=total,
+                           search_query=search_query)
+
+@app.route("/api/search")
+def api_search():
+    institutions_data = load_institutions_data()
+    search_query = request.args.get('query', '').lower()
+    filtered_institutions = [
+        inst for inst in institutions_data["institutions"]
+        if search_query in inst["name"].lower() or search_query in inst["code"].lower()
+    ]
+    return jsonify(filtered_institutions)
 
 @app.route("/signup")
 def signUp():

@@ -97,9 +97,11 @@
     </div>
 
     <script type="module">
+        // Import necessary Firebase modules from the Firebase CDN
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
         import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
 
+        // Firebase configuration object containing the app's credentials
         const firebaseConfig = {
             apiKey: "AIzaSyCXrmzmNOaHIsoonCqILsDW1ONA_uXuJWU",
             authDomain: "careerhub-database.firebaseapp.com",
@@ -111,11 +113,16 @@
             measurementId: "G-9XQVRH5D3J"
         };
 
+        // Initialize Firebase app with the configuration object
         const app = initializeApp(firebaseConfig);
+        // Get a reference to the Firebase Realtime Database
         const db = getDatabase(app);
- 
+        
+        // Add an event listener to the signup form for the 'submit' event
         document.getElementById("signup-form").addEventListener("submit", function(e){
-            e.preventDefault();
+            e.preventDefault(); // Prevent the default form submission behavior
+
+            // Collect user data from the form inputs
             const userData = {
                 firstName: document.getElementById("first-name").value,
                 secondName: document.getElementById("second-name").value,
@@ -128,17 +135,19 @@
                 residence: document.getElementById("residence").value
             };
 
+            // Check if the password and confirm password fields match
             if (userData.password !== userData.confirmPassword) {
                 alert("Passwords do not match");
-                return;
+                return; // Exit the function if passwords do not match
             }
+            // Write the user data to the database at the path 'users/{email}'
             set(ref(db, 'users/' + userData.email.replace('.', '_')), userData)
                 .then(() => {
-                    alert("Signup successful");
-                    window.location.href = '{{ url_for("display") }}';
+                    alert("Signup successful"); // Notify the user of a successful signup
+                    window.location.href = '{{ url_for("display") }}';// Redirect to another page
                 })
                 .catch((error) => {
-                    alert("Error: " + error);
+                    alert("Error: " + error); // Notify the user if there was an error
                 });
         });
     </script>

@@ -47,9 +47,11 @@
 
     <!-- Firebase Configuration -->
     <script type="module">
+         // Import necessary Firebase modules from the Firebase CDN
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
         import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
 
+        // Firebase configuration object containing the app's credentials
         const firebaseConfig = {
             apiKey: "AIzaSyCXrmzmNOaHIsoonCqILsDW1ONA_uXuJWU",
             authDomain: "careerhub-database.firebaseapp.com",
@@ -61,29 +63,37 @@
             measurementId: "G-9XQVRH5D3J"
         };
 
+        // Initialize Firebase app with the configuration object
         const app = initializeApp(firebaseConfig);
+        // Get a reference to the Firebase Realtime Database
         const db = getDatabase(app);
 
+        // Add an event listener to the login form for the 'submit' event
         document.getElementById("login-form").addEventListener("submit", function(e){
-            e.preventDefault();
+            e.preventDefault(); // Prevent the default form submission behavior
+            
+            // Collect email and password from the form inputs
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
+            // Get a reference to the database
             const dbRef = ref(db);
+            // Attempt to retrieve the user data from the database using the email
             get(child(dbRef, `users/${email.replace('.', '_')}`)).then((snapshot) => {
                 if (snapshot.exists()) {
+                    // If user data exists, check if the password matches
                     const userData = snapshot.val();
                     if (userData.password === password) {
-                        alert("Login successful");
-                        window.location.href = '{{ url_for("display") }}';
+                        alert("Login successful");// Notify the user of a successful login
+                        window.location.href = '{{ url_for("display") }}';// Redirect to career-hub information
                     } else {
-                        alert("Invalid password");
+                        alert("Invalid password");// Notify the user of an incorrect password
                     }
                 } else {
-                    alert("User does not exist");
+                    alert("User does not exist");// Notify the user that the account does not exist
                 }
             }).catch((error) => {
-                alert("Error: " + error);
+                alert("Error: " + error);// Notify the user if there was an error
             });
         });
     </script>

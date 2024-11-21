@@ -13,17 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <script src="/static/js/search.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cells = document.querySelectorAll('.clickable-cell');
-            cells.forEach(cell => {
-                cell.addEventListener('click', () => {
-                    window.location.href = cell.dataset.href;
-                });
-            });
-        });
-    </script>
-
     <style>
         .newheader {
             background-color: #4CAF50;
@@ -177,10 +166,12 @@
             }
         }
         #search {
-            height: 10px;
-            margin-top: 40px;
-            margin-left: 5px;
-        }
+                height: 10px;
+                margin-top: 40px;
+                margin-left: 5px; 
+                padding-top: 15px;
+                text-align: center;
+    }
     </style>
 </head>
 <body style="font-size: medium;">

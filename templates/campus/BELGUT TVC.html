@@ -62,6 +62,7 @@
     </div>
 
     <script>
+        // Array of course names
         const courses = [
             "Certificate in Information Communication Technology (ICT)",
             "Certificate in Building Technology (Building Technology)",
@@ -80,17 +81,22 @@
             "Diploma in Electrical and Electronics Engineering (Power Option)"
         ];
 
+        // Number of rows to display per page
         const rowsPerPage = 10;
+        // Current page number
         let currentPage = 1;
 
+        // Function to display the courses table
         function displayTable(page) {
             const tableBody = document.getElementById("tableBody");
             tableBody.innerHTML = "";
 
+            // Calculate start and end indices for the courses to display
             const start = (page - 1) * rowsPerPage;
             const end = start + rowsPerPage;
             const paginatedCourses = courses.slice(start, end);
 
+            // Create table rows and cells for each course
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
@@ -104,6 +110,7 @@
             });
         }
 
+        // Function to format course name for URL
         function formatCourseName(course) {
             // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
             let sanitized = course.replace('&', 'and');
@@ -112,17 +119,21 @@
             return sanitized;
         }
 
+        // Function to navigate to course page
         function navigateToCourse(course) {
             const formattedCourseName = formatCourseName(course);
             window.location.href = `/course_automating_folder_creating/BelgutTvcCourse/${formattedCourseName}`;
         }
 
+        // Function to set up pagination buttons
         function setupPagination() {
             const pagination = document.getElementById("pagination");
             pagination.innerHTML = "";
 
+            // Calculate total number of pages
             const totalPages = Math.ceil(courses.length / rowsPerPage);
 
+            // Create pagination buttons
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement("button");
                 button.textContent = i;
@@ -139,6 +150,7 @@
             }
         }
 
+        // Function to update pagination buttons
         function updatePaginationButtons() {
             const buttons = document.querySelectorAll(".pagination button");
             buttons.forEach(button => {
@@ -149,6 +161,7 @@
             });
         }
 
+        // Initial table and pagination setup
         displayTable(currentPage);
         setupPagination();
     </script>

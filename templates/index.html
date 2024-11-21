@@ -6,11 +6,14 @@
     <title>Career Hub</title>
     <script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
     <script src="/static/js/index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="/static/Colorful Modern Infinity Technology Free Logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="/static/styles/header.css">
     <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <script src="/static/js/search.js"></script>
     <style>
@@ -173,22 +176,45 @@
                 text-align: center;
     }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cells = document.querySelectorAll('.clickable-cell');
+            cells.forEach(cell => {
+                cell.addEventListener('click', () => {
+                    window.location.href = cell.dataset.href;
+                });
+            });
+        });
+    </script>
 </head>
 <body style="font-size: medium;">
-    <div class="newheader">
-        <header>
-            <div>
-                <h1>AFTER LOGIN THIS PAGE APPEAR</h1>
-            </div>
-        </header>
-    </div>
+    <header>
+        <div class="logo">
+            <img src="/static/Colorful Modern Infinity Technology Free Logo.png" alt="Logo">
+            <h1><a href="/">Career Hub</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#list">About</a></li>
+            </ul>
+        </nav>
+        <ul class="social-icons">
+            <li><a href="https://facebook.com"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://instagram.com"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+        <div class="contact-info">
+            <p>Contact us: +254-768-744-896 | careerhub@gmail.com</p>
+        </div>
+    </header>
     <!-- Search bar for searching campuses -->
     <div class="app-text">
         <form action="/career_hub" method="get">
-            <input type="text" name="search_query" placeholder="Search for courses or codes" class="text-field" value="{{ search_query }}">
-            <button type="submit" id="search" class="btn btn-primary">Search</button>
+            <div class="input-group">
+                <input type="text" name="search_query" placeholder="Search for courses or codes" class="text-field form-control" value="{{ search_query }}">
+                <button type="submit" id="search" class="btn btn-outline-primary">Search</button>
+            </div>
         </form>
-        <!-- <i class="fa fa-search fa-2x" aria-hidden="true" id="search"></i> -->
     </div>
     <!-- Table for displaying institution information -->
     <div class="table-form">
@@ -206,10 +232,10 @@
                 {% for item in institutions %}
                     <tr>
                         <!-- Each cell is a clickable link to the institution's details page -->
-                        <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.id }}</td></a>
-                        <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.code }}</td></a>
-                        <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.name }}</td></a>
-                        <a href="{{ url_for('show_campus', code=item.code) }}"><td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.type }}</td></a>
+                        <td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.id }}</td>
+                        <td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.code }}</td>
+                        <td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.name }}</td>
+                        <td class="clickable-cell" data-href="{{ url_for('show_campus', code=item.code) }}">{{ item.type }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -227,5 +253,20 @@
             <a href="{{ url_for('display', page=page+1) }}">Next</a>
         {% endif %}
     </div>
+
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item" id="list"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+        </footer>
+    </div>
+    <div class="b-example-divider"></div>
 </body>
 </html>

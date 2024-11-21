@@ -1,0 +1,223 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.social-icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.social-icons li {
+    margin-right: 10px;
+}
+
+.social-icons li a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.contact-info {
+    font-size: 0.9rem;
+    margin-left: auto;
+}
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            background-color: #f2f2f2;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .clickable-cell {
+            cursor: pointer;
+        }
+        .app-text {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .app-text input {
+            flex: 1;
+            max-width: 300px;
+            padding: 10px;
+        }
+        .app-text button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        /* Media Queries */
+        @media (max-width: 575.98px) {
+            body {
+                font-size: 14px;
+            }
+            table, th, td {
+                padding: 6px;
+            }
+            .pagination a {
+                padding: 6px 12px;
+            }
+            .app-text {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .app-text input, .app-text button {
+                max-width: 100%;
+                margin: 5px 0;
+            }
+        }
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            body {
+                font-size: 15px;
+            }
+            table, th, td {
+                padding: 7px;
+            }
+            .pagination a {
+                padding: 7px 14px;
+            }
+            .app-text {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .app-text input, .app-text button {
+                max-width: 100%;
+                margin: 5px 0;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            body {
+                font-size: 16px;
+            }
+            table, th, td {
+                padding: 8px;
+            }
+            .pagination a {
+                padding: 8px 16px;
+            }
+            .app-text input {
+                max-width: 400px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            body {
+                font-size: 17px;
+            }
+            table, th, td {
+                padding: 9px;
+            }
+            .pagination a {
+                padding: 9px 18px;
+            }
+            .app-text input {
+                max-width: 450px;
+            }
+        }
+        @media (min-width: 1200px) {
+            body {
+                font-size: 18px;
+            }
+            table, th, td {
+                padding: 10px;
+            }
+            .pagination a {
+                padding: 10px 20px;
+            }
+            .app-text input {
+                max-width: 500px;
+            }
+        }
+        #search {
+            margin-right: 5px;
+        }
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+      .container {
+        background-color: darkslategray;
+      }

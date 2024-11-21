@@ -76,17 +76,25 @@
             "Accounting Technicians Diploma (ATD)"
         ];
 
+        // Number of rows to display per page
         const rowsPerPage = 10;
+        // Variable to keep track of the current page number
         let currentPage = 1;
 
+        // Function to display the table for a given page
         function displayTable(page) {
             const tableBody = document.getElementById("tableBody");
+            // Clear any existing rows in the table body
             tableBody.innerHTML = "";
 
+            // Calculate the starting index for the given page
             const start = (page - 1) * rowsPerPage;
+            // Calculate the ending index for the given page
             const end = start + rowsPerPage;
+            // Slice the courses array to get the courses for the current page
             const paginatedCourses = courses.slice(start, end);
 
+            // Loop through the paginated courses and create table rows
             paginatedCourses.forEach(course => {
                 const row = document.createElement("tr");
                 const cell = document.createElement("td");
@@ -100,6 +108,7 @@
             });
         }
 
+        // Function to format the course name for the URL
         function formatCourseName(course) {
             // Replace '&' with 'and', remove non-alphanumeric characters except spaces, and replace spaces with underscores
             let sanitized = course.replace('&', 'and');
@@ -108,17 +117,22 @@
             return sanitized;
         }
 
+         // Function to navigate to the course details page
         function navigateToCourse(course) {
             const formattedCourseName = formatCourseName(course);
             window.location.href = `/course_automating_folder_creating/Bahati-IbasCourse/${formattedCourseName}`;
         }
 
+        // Function to set up the pagination buttons
         function setupPagination() {
             const pagination = document.getElementById("pagination");
+            // Clear any existing pagination buttons
             pagination.innerHTML = "";
 
+            // Calculate the total number of pages
             const totalPages = Math.ceil(courses.length / rowsPerPage);
 
+            // Loop through and create pagination buttons
             for (let i = 1; i <= totalPages; i++) {
                 const button = document.createElement("button");
                 button.textContent = i;
@@ -126,6 +140,7 @@
                 if (i === currentPage) {
                     button.classList.add("active");
                 }
+                // Add event listener to handle page changes
                 button.addEventListener("click", () => {
                     currentPage = i;
                     displayTable(currentPage);
@@ -135,6 +150,7 @@
             }
         }
 
+        // Function to update the active state of pagination buttons
         function updatePaginationButtons() {
             const buttons = document.querySelectorAll(".pagination button");
             buttons.forEach(button => {
@@ -145,7 +161,9 @@
             });
         }
 
+        // Initial call to display the first page of the table
         displayTable(currentPage);
+        // Initial call to set up the pagination buttons
         setupPagination();
     </script>
 </body>
